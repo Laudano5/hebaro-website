@@ -1,0 +1,214 @@
+/* Static training scene with no numerical claims or external photo dependencies. */
+export default function TrainingScene() {
+  return <svg viewBox="0 0 820 620" role="img" aria-labelledby="training-scene-title" focusable="false">
+    <title id="training-scene-title">Un instructor presenta tecnología a un equipo frente a una pantalla: Aprende, Aplica, Crece.</title>
+    <defs>
+      <linearGradient id="training-room" x2="1" y2="1"><stop stopColor="#29454F"/><stop offset="1" stopColor="#031F24"/></linearGradient>
+      <linearGradient id="training-screen" x2="1" y2="1"><stop stopColor="#103C42"/><stop offset="1" stopColor="#031F24"/></linearGradient>
+      <linearGradient id="training-shirt" x2="1" y2="0"><stop stopColor="#031F24"/><stop offset=".55" stopColor="#29454F"/><stop offset="1" stopColor="#1C3036"/></linearGradient>
+      <linearGradient id="training-skin" x2="1" y2="1"><stop stopColor="#D6BF9F"/><stop offset="1" stopColor="#B78E58"/></linearGradient>
+      <radialGradient id="training-light"><stop stopColor="#65C5CC" stopOpacity=".16"/><stop offset="1" stopColor="#65C5CC" stopOpacity="0"/></radialGradient>
+    </defs>
+    <rect width="820" height="620" fill="url(#training-room)"/>
+    <path d="M85 0V450M180 0V450M285 0V450" stroke="#A8BBBA" strokeOpacity=".14" strokeWidth="8"/>
+    <path d="M85 0V450M180 0V450M285 0V450" stroke="#D6BF9F" strokeOpacity=".12" strokeWidth="2"/>
+    <ellipse cx="450" cy="245" rx="365" ry="300" fill="url(#training-light)"/>
+    <g transform="translate(310 40) skewY(-4)">
+      <rect width="472" height="375" rx="6" fill="#031F24" stroke="#29454F" strokeWidth="10"/>
+      <rect x="14" y="14" width="444" height="347" rx="3" fill="url(#training-screen)" stroke="#65C5CC" strokeOpacity=".38"/>
+      <path d="M32 37H423" stroke="#65C5CC" strokeOpacity=".35"/>
+      <text x="36" y="30" fill="#A8BBBA" fontSize="8" letterSpacing="2">HEBARO · APRENDIZAJE APLICADO</text>
+      <g fontFamily="Manrope, sans-serif" fontSize="29" fontWeight="650"><text x="37" y="91" fill="#F5F3EE">Aprende</text><text x="37" y="132" fill="#F5F3EE">Aplica</text><text x="37" y="173" fill="#D6BF9F">Crece</text></g>
+      <path d="M232 174H425M232 174V68" fill="none" stroke="#65C5CC" strokeOpacity=".3"/>
+      <g fill="#65C5CC" fillOpacity=".55"><rect x="250" y="139" width="22" height="35"/><rect x="289" y="123" width="22" height="51"/><rect x="328" y="103" width="22" height="71"/><rect x="367" y="79" width="22" height="95"/></g>
+      <path d="M248 116 290 100 329 83 379 57" fill="none" stroke="#D6BF9F" strokeWidth="1.5"/>
+      <path d="M379 57 369 58M379 57 376 67" stroke="#D6BF9F"/>
+      <path d="M31 203H425M212 218V325" stroke="#65C5CC" strokeOpacity=".25"/>
+      <g transform="translate(105 265)" fill="none" stroke="#65C5CC"><circle r="42" strokeOpacity=".2" strokeWidth="7"/><path d="M0-42A42 42 0 1 1-40 12" strokeWidth="7"/><circle cy="-7" r="9"/><path d="M-18 20V12Q-18 2 0 2Q18 2 18 12V20Z"/></g>
+      <g fill="#A8BBBA" fontFamily="Manrope, sans-serif" fontSize="12"><text x="239" y="240">Colaboración</text><text x="239" y="269">Automatización</text><text x="239" y="298">Inteligencia artificial</text></g>
+      <g fill="#D6BF9F"><circle cx="229" cy="236" r="2"/><circle cx="229" cy="265" r="2"/><circle cx="229" cy="294" r="2"/></g>
+    </g>
+    {/* Presenter pointing toward the applied-learning screen. */}
+    <path d="M248 266 222 290 194 434 201 544H392L380 400 356 291 325 272Z" fill="url(#training-shirt)" stroke="#A8BBBA" strokeOpacity=".15"/>
+    <path d="M272 216 269 271 295 288 321 270 315 221Z" fill="url(#training-skin)"/>
+    <path d="M263 168Q298 142 325 177L330 218Q322 252 294 252Q268 245 260 211Z" fill="url(#training-skin)"/>
+    <path d="M260 203Q245 166 271 154Q306 140 326 167L326 186Q313 169 294 175L266 181Z" fill="#031F24"/>
+    <path d="M303 218 327 209Q330 239 309 250L288 247 278 226 285 218 298 230Z" fill="#1C3036"/>
+    <path d="M327 193 338 210 326 215" fill="#B78E58"/>
+    <path d="M320 191H326" stroke="#031F24" strokeWidth="2"/>
+    <path d="M269 267 292 287 281 306 258 277M317 268 295 288 307 306 332 281" fill="#031F24" stroke="#A8BBBA" strokeOpacity=".15"/>
+    <path d="M343 293Q368 285 381 319L413 357 462 320 480 339Q445 389 410 397Q395 398 367 365L340 334Z" fill="url(#training-shirt)" stroke="#A8BBBA" strokeOpacity=".18"/>
+    <path d="M460 321 480 297 498 282Q505 280 502 288L492 303 522 287Q529 287 525 294L505 309 526 302Q534 303 527 309L504 321 514 321Q519 326 511 330L478 340Z" fill="url(#training-skin)"/>
+    <path d="M228 295Q205 295 203 328L187 405Q185 431 214 441L275 450 280 425 230 409 245 341Z" fill="url(#training-shirt)" stroke="#A8BBBA" strokeOpacity=".16"/>
+    <path d="M275 426 295 415 315 418 331 435Q335 442 327 441L310 430 295 431 311 445Q315 452 304 450L276 448Z" fill="url(#training-skin)"/>
+    <text x="278" y="332" fill="#F5F3EE" fontFamily="Manrope, sans-serif" fontSize="12" fontWeight="700" letterSpacing="1">HEBARO</text>
+    <path d="M203 543 214 620H278L293 545 308 620H374L388 543Z" fill="#031F24"/>
+    {/* Learners and a laptop in the foreground. */}
+    <path d="M428 620Q434 473 483 450L550 450Q608 479 628 620Z" fill="#1C3036"/>
+    <path d="M466 457Q450 362 502 351Q558 338 571 397L568 479Q533 456 519 464Q489 481 466 457Z" fill="#031F24" stroke="#D6BF9F" strokeOpacity=".12"/>
+    <path d="M687 470Q636 481 622 620H820V501L766 466Z" fill="#29454F"/>
+    <path d="M683 384Q718 356 752 386L759 432 743 472 699 465 677 423Z" fill="#B78E58"/>
+    <path d="M679 416Q657 374 690 363Q725 350 752 375L759 400 739 399 724 386 695 399 693 429Z" fill="#031F24"/>
+    <path d="M0 584H438L409 620H0Z" fill="#29454F"/>
+    <path d="M48 491H185L215 583H73Z" fill="#031F24" stroke="#A8BBBA" strokeOpacity=".35"/>
+    <path d="M66 504H175L195 567H85Z" fill="#103C42"/>
+    <path d="M97 535H157M104 546H169" stroke="#65C5CC" strokeOpacity=".3"/>
+  </svg>;
+}
+/* =========================================================
+   CAPACITACION — DESKTOP SCALE FIX
+   ========================================================= */
+
+@media (min-width: 1201px) {
+
+  .training-page {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .training-page .wrap {
+    width: calc(100% - 120px) !important;
+    max-width: 1480px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* HERO */
+  .training-hero {
+    min-height: 650px !important;
+  }
+
+  .training-hero-inner {
+    min-height: 650px !important;
+    padding-top: 70px !important;
+    padding-bottom: 70px !important;
+  }
+
+  .training-hero-copy {
+    width: 48% !important;
+    max-width: 680px !important;
+  }
+
+  .training-hero h1 {
+    font-size: 68px !important;
+    line-height: 1.04 !important;
+    letter-spacing: -2.2px !important;
+  }
+
+  .training-hero-copy > p:not(.internal-eyebrow) {
+    max-width: 600px !important;
+    font-size: 18px !important;
+    line-height: 1.6 !important;
+  }
+
+  .training-hero-scene {
+    left: 48% !important;
+    right: 0 !important;
+  }
+
+  /* ENFOQUE */
+  .training-approach {
+    min-height: 440px !important;
+    padding: 95px 0 !important;
+  }
+
+  .training-approach-inner {
+    grid-template-columns: 0.44fr 0.56fr !important;
+    gap: 70px !important;
+  }
+
+  .training-approach h2 {
+    font-size: 48px !important;
+  }
+
+  /* AREAS */
+  .training-areas {
+    padding: 105px 0 110px !important;
+  }
+
+  .training-areas .internal-section-heading {
+    margin-bottom: 65px !important;
+  }
+
+  .training-area-columns {
+    width: 100% !important;
+  }
+
+  .training-area-columns article {
+    padding-left: 36px !important;
+    padding-right: 36px !important;
+  }
+
+  .training-area-columns article:first-child {
+    padding-left: 0 !important;
+  }
+
+  .training-area-columns article:last-child {
+    padding-right: 0 !important;
+  }
+
+  .training-area-symbol span {
+    font-size: 58px !important;
+  }
+
+  .training-area-symbol svg {
+    width: 64px !important;
+    height: 64px !important;
+  }
+
+  .training-area-columns h3 {
+    font-size: 23px !important;
+  }
+
+  .training-area-columns p {
+    font-size: 17px !important;
+    line-height: 1.65 !important;
+  }
+
+  /* METODOLOGIA */
+  .training-method {
+    min-height: 520px !important;
+    grid-template-columns: 42% 58% !important;
+  }
+
+  .training-method-photo {
+    min-height: 520px !important;
+  }
+
+  .training-method-copy {
+    padding: 90px 60px !important;
+  }
+
+  .training-method h2 {
+    font-size: 46px !important;
+  }
+
+  .training-process-icon {
+    width: 74px !important;
+    height: 74px !important;
+  }
+
+  /* RESULTADO */
+  .training-result {
+    padding: 100px 0 !important;
+  }
+
+  .training-result-journey {
+    max-width: 1150px !important;
+  }
+
+  .training-result-journey li > span {
+    width: 90px !important;
+    height: 90px !important;
+  }
+
+  /* CTA */
+  .training-cta {
+    min-height: 400px !important;
+    padding: 70px 0 !important;
+  }
+
+  .training-cta h2 {
+    font-size: 50px !important;
+  }
+}

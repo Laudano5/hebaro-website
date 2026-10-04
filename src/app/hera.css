@@ -1,0 +1,814 @@
+.hera-widget {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hera-launcher {
+  position: absolute;
+  right: max(22px, env(safe-area-inset-right));
+  bottom: max(22px, env(safe-area-inset-bottom));
+  display: flex;
+  min-width: 150px;
+  min-height: 60px;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 17px 7px 65px;
+  border: 1px solid rgb(214 191 159 / 55%);
+  border-radius: 16px;
+  background: var(--brand-teal);
+  box-shadow: 0 12px 30px rgb(25 43 48 / 25%);
+  color: var(--brand-white);
+  cursor: pointer;
+  font: inherit;
+  font-size: 17px;
+  font-weight: 760;
+  letter-spacing: .035em;
+  pointer-events: auto;
+  transition: transform .25s ease, background-color .2s ease, box-shadow .25s ease;
+  isolation: isolate;
+}
+
+.hera-launcher>span { display: grid; gap: 1px; line-height: 1.05; }
+.hera-launcher small { color: rgb(255 255 255 / 75%); font-size: 10px; font-weight: 500; letter-spacing: .035em; }
+
+.hera-launcher:hover {
+  transform: translateY(-3px) scale(1.025);
+  background: var(--brand-forest);
+  box-shadow: 0 15px 34px rgb(25 43 48 / 30%), 0 0 0 4px rgb(214 191 159 / 13%);
+}
+
+.hera-avatar { display: block; flex: none; object-fit: contain; }
+.hera-avatar-launcher {
+  position: absolute;
+  z-index: 1;
+  left: -11px;
+  width: 68px;
+  height: 68px;
+  overflow: visible;
+  filter: drop-shadow(0 4px 7px rgb(14 30 34 / 20%));
+  animation: hera-breathe 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes hera-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.025); }
+}
+
+.hera-avatar-header { width: 50px; height: 50px; }
+.hera-avatar-message { width: 32px; height: 32px; margin-top: 3px; }
+.hera-avatar-thinking { position: relative; display: inline-grid; place-items: center; }
+.hera-avatar-thinking::after {
+  position: absolute;
+  inset: -5px;
+  border: 1px solid rgb(214 191 159 / 54%);
+  border-top-color: var(--brand-gold);
+  border-radius: 50%;
+  animation: hera-thinking-ring 2.8s linear infinite;
+  content: "";
+  pointer-events: none;
+}
+@keyframes hera-thinking-ring { to { transform: rotate(360deg); } }
+.hera-message-row { display: flex; width: 100%; align-items: flex-start; gap: 7px; }
+.hera-message-row.user { justify-content: flex-end; }
+.hera-message-avatar-spacer { width: 32px; flex: none; }
+.hera-message-row .hera-message { flex: 0 1 auto; }
+.hera-message-row.assistant .hera-message { max-width: calc(91% - 39px); }
+.hera-message-row.user .hera-message { max-width: 91%; }
+.hera-action-label { display: inline-flex; min-width: 0; align-items: center; gap: 9px; }
+.hera-action-label svg { flex: none; color: var(--brand-forest); }
+.hera-panel-header { gap: 10px; }
+.hera-identity h2 { display: flex; align-items: baseline; gap: 7px; }
+.hera-identity h2 span { font-size: 11px; }
+.hera-identity p { margin-top: 3px; font-size: 11px; }
+.hera-message-row .hera-message { margin: 0; }
+.hera-message-row.assistant .hera-message { border-color: rgb(41 69 79 / 8%); box-shadow: 0 3px 12px rgb(25 43 48 / 6%); }
+.hera-quick-actions button { min-height: 40px; border-radius: 9px; }
+.hera-composer { padding-top: 12px; }
+.hera-composer textarea:focus { border-color: var(--brand-teal); }
+.hera-composer>button { background: var(--brand-teal); color: var(--brand-white); }
+.hera-composer>button:not(:disabled):hover { background: var(--brand-forest); }
+
+.hera-launcher.active {
+  visibility: hidden;
+}
+
+.hera-launcher:focus-visible,
+.hera-panel button:focus-visible,
+.hera-panel a:focus-visible,
+.hera-panel input:focus-visible,
+.hera-panel textarea:focus-visible {
+  outline: 3px solid var(--brand-gold);
+  outline-offset: 3px;
+}
+
+.hera-panel {
+  position: absolute;
+  right: max(22px, env(safe-area-inset-right));
+  bottom: max(22px, env(safe-area-inset-bottom));
+  display: flex;
+  width: min(430px, calc(100vw - 32px));
+  height: min(720px, calc(100dvh - 32px));
+  max-height: calc(100dvh - 32px);
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgb(214 191 159 / 48%);
+  border-radius: 18px;
+  background: var(--brand-paper);
+  box-shadow: 0 25px 80px rgb(52 53 57 / 30%);
+  color: var(--brand-charcoal);
+  pointer-events: auto;
+  animation: hera-panel-in .22s cubic-bezier(.2,.75,.25,1) both;
+}
+
+@keyframes hera-panel-in {
+  from { opacity: 0; transform: translateY(10px) scale(.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.hera-panel.is-closing {
+  animation: hera-panel-out .16s cubic-bezier(.2,.75,.25,1) both;
+}
+
+@keyframes hera-panel-out {
+  to { opacity: 0; transform: translateY(8px) scale(.99); }
+}
+
+.hera-panel-header {
+  display: flex;
+  min-height: 76px;
+  flex: none;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 15px;
+  background: var(--brand-forest);
+  color: var(--brand-white);
+}
+
+.hera-symbol {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  object-fit: contain;
+}
+
+.hera-identity {
+  min-width: 0;
+  flex: 1;
+}
+
+.hera-identity h2 {
+  margin: 0;
+  color: var(--brand-white);
+  font-size: 19px;
+  font-weight: 750;
+  letter-spacing: .01em;
+  line-height: 1.2;
+}
+
+.hera-identity h2 span {
+  color: var(--brand-sand);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .015em;
+}
+
+.hera-identity p {
+  margin: 4px 0 0;
+  color: rgb(255 255 255 / 83%);
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+.hera-close {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  place-items: center;
+  border: 1px solid rgb(214 191 159 / 36%);
+  border-radius: 9px;
+  background: transparent;
+  color: var(--brand-white);
+  cursor: pointer;
+  transition: background-color .18s ease;
+}
+
+.hera-close:hover {
+  background: rgb(214 191 159 / 14%);
+}
+
+.hera-messages {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 13px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 17px 15px 20px;
+  scroll-behavior: smooth;
+}
+
+.hera-message {
+  width: fit-content;
+  max-width: 91%;
+  padding: 12px 14px;
+  border: 1px solid rgb(52 53 57 / 10%);
+  border-radius: 13px 13px 13px 4px;
+  background: var(--brand-white);
+  box-shadow: 0 3px 10px rgb(52 53 57 / 5%);
+}
+
+.hera-message.user {
+  align-self: flex-end;
+  border-color: transparent;
+  border-radius: 13px 13px 4px 13px;
+  background: var(--brand-teal);
+  color: var(--brand-white);
+}
+
+.hera-message p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.hera-message-author {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--brand-rust);
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+
+.hera-message.assistant p {
+  color: var(--brand-charcoal);
+}
+
+.hera-message.user p {
+  color: var(--brand-white);
+}
+
+.hera-quick-actions {
+  display: grid;
+  align-self: flex-start;
+  gap: 7px;
+  width: min(100%, 340px);
+}
+
+.hera-quick-actions>p {
+  margin: 0 0 2px;
+  color: color-mix(in srgb, var(--brand-charcoal) 76%, transparent);
+  font-size: 12px;
+}
+
+.hera-quick-actions button {
+  display: flex;
+  min-height: 37px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 9px;
+  padding: 8px 11px;
+  border: 1px solid rgb(41 69 79 / 23%);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--brand-teal);
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: left;
+  transition: border-color .16s ease, background-color .16s ease, transform .16s ease;
+}
+
+.hera-quick-actions button:hover {
+  transform: translateX(2px);
+  border-color: var(--brand-gold);
+  background: rgb(214 191 159 / 20%);
+}
+
+.hera-follow-up {
+  display: grid;
+  align-self: stretch;
+  gap: 7px;
+  padding: 12px;
+  border: 1px solid rgb(169 133 89 / 32%);
+  border-radius: 11px;
+  background: color-mix(in srgb, var(--brand-sand) 23%, var(--brand-white));
+}
+
+.hera-follow-up p {
+  margin: 0 0 3px;
+  color: var(--brand-charcoal);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.hera-contact-choice,
+.hera-continue {
+  display: flex;
+  min-height: 39px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 9px 11px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 650;
+  text-align: left;
+}
+
+.hera-contact-choice {
+  background: var(--brand-teal);
+  color: var(--brand-white);
+}
+
+.hera-contact-choice:hover {
+  background: var(--brand-forest);
+}
+
+.hera-continue {
+  justify-content: center;
+  border-color: rgb(41 69 79 / 24%);
+  background: transparent;
+  color: var(--brand-teal);
+}
+
+.hera-continue:hover {
+  background: rgb(214 191 159 / 24%);
+}
+
+.hera-limit-note {
+  margin: 0;
+  color: var(--brand-charcoal);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.hera-composer {
+  display: grid;
+  flex: none;
+  grid-template-columns: 1fr 44px;
+  gap: 7px;
+  padding: 11px 13px 9px;
+  border-top: 1px solid rgb(52 53 57 / 11%);
+  background: var(--brand-white);
+}
+
+.hera-composer textarea {
+  width: 100%;
+  min-height: 44px;
+  max-height: 112px;
+  resize: vertical;
+  padding: 11px 12px;
+  border: 1px solid rgb(52 53 57 / 20%);
+  border-radius: 9px;
+  background: var(--brand-paper);
+  color: var(--brand-charcoal);
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.hera-composer textarea::placeholder {
+  color: color-mix(in srgb, var(--brand-charcoal) 60%, transparent);
+}
+
+.hera-composer>button {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  align-self: start;
+  place-items: center;
+  border: 0;
+  border-radius: 9px;
+  background: var(--brand-gold);
+  color: var(--brand-charcoal);
+  cursor: pointer;
+  transition: background-color .18s ease, transform .18s ease;
+}
+
+.hera-composer>button:not(:disabled):hover {
+  transform: translateY(-1px);
+  background: var(--brand-sand);
+}
+
+.hera-composer>button:disabled {
+  cursor: not-allowed;
+  opacity: .48;
+}
+
+.hera-composer>p {
+  grid-column: 1 / -1;
+  margin: 0 2px;
+  color: color-mix(in srgb, var(--brand-charcoal) 60%, transparent);
+  font-size: 10px;
+  line-height: 1.3;
+}
+
+.hera-typing {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgb(41 69 79 / 9%);
+  background: var(--brand-white);
+  color: var(--brand-teal);
+  box-shadow: 0 3px 10px rgb(52 53 57 / 5%);
+}
+
+.hera-thinking-row { display: flex; align-items: flex-start; gap: 7px; }
+.hera-thinking-copy { margin-right: 3px; font-size: 12px; line-height: 1.35; }
+.hera-thinking-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brand-gold);
+  animation: hera-dot 1s ease-in-out infinite alternate;
+}
+
+.hera-thinking-dot:nth-child(2) { animation-delay: .15s; }
+.hera-thinking-dot:nth-child(3) { animation-delay: .3s; }
+.hera-thinking-dot:nth-child(4) { animation-delay: .45s; }
+
+.hera-chat-error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid rgb(41 69 79 / 12%);
+  border-radius: 10px;
+  background: var(--brand-white);
+  color: var(--brand-charcoal);
+  font-size: 12px;
+  line-height: 1.45;
+}
+.hera-chat-error p { margin: 0; }
+.hera-chat-error button {
+  flex: none;
+  padding: 5px 8px;
+  border: 1px solid rgb(41 69 79 / 24%);
+  border-radius: 7px;
+  background: transparent;
+  color: var(--brand-teal);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+}
+
+@keyframes hera-dot {
+  to { transform: translateY(-3px); opacity: .55; }
+}
+
+.hera-lead-form {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+.hera-lead-scroll {
+  min-height: 0;
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 15px 16px 18px;
+}
+
+.hera-back {
+  margin: 0 0 14px;
+  padding: 3px 0;
+  border: 0;
+  background: transparent;
+  color: var(--brand-teal);
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.hera-lead-scroll h3,
+.hera-success h3 {
+  margin: 0 0 6px;
+  color: var(--brand-teal);
+  font-size: 21px;
+  letter-spacing: -.02em;
+}
+
+.hera-lead-intro {
+  margin: 0 0 13px;
+  color: var(--brand-charcoal);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.hera-summary-preview {
+  margin: 0 0 13px;
+  padding: 10px 11px;
+  border-left: 3px solid var(--brand-gold);
+  border-radius: 0 8px 8px 0;
+  background: color-mix(in srgb, var(--brand-sand) 25%, var(--brand-white));
+}
+
+.hera-summary-preview span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--brand-teal);
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.hera-summary-preview p {
+  max-height: 92px;
+  overflow-y: auto;
+  margin: 0;
+  color: var(--brand-charcoal);
+  font-size: 12px;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.hera-field {
+  display: grid;
+  gap: 5px;
+  margin-bottom: 10px;
+  color: var(--brand-charcoal);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.hera-field>span {
+  color: color-mix(in srgb, var(--brand-charcoal) 68%, transparent);
+  font-size: 11px;
+  font-weight: 450;
+}
+
+.hera-field input {
+  width: 100%;
+  min-height: 41px;
+  padding: 9px 10px;
+  border: 1px solid rgb(52 53 57 / 22%);
+  border-radius: 8px;
+  background: var(--brand-white);
+  color: var(--brand-charcoal);
+  font: inherit;
+  font-size: 14px;
+}
+
+.hera-field input[aria-invalid="true"] {
+  border-color: var(--brand-rust);
+}
+
+.hera-honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.hera-field-error,
+.hera-submit-error {
+  margin: 0 0 10px;
+  color: var(--brand-rust);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.hera-disclosure {
+  margin: 12px 0 9px;
+  color: var(--brand-charcoal);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.hera-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: var(--brand-charcoal);
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.hera-consent input {
+  width: 17px;
+  height: 17px;
+  flex: none;
+  margin: 1px 0 0;
+  accent-color: var(--brand-teal);
+}
+
+.hera-consent a {
+  color: var(--brand-teal);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.hera-form-footer {
+  flex: none;
+  padding: 11px 15px max(12px, env(safe-area-inset-bottom));
+  border-top: 1px solid rgb(52 53 57 / 12%);
+  background: var(--brand-white);
+}
+
+.hera-submit {
+  display: flex;
+  width: 100%;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: var(--brand-gold);
+  color: var(--brand-charcoal);
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 750;
+  transition: background-color .18s ease, transform .18s ease;
+}
+
+.hera-submit:not(:disabled):hover {
+  transform: translateY(-1px);
+  background: var(--brand-sand);
+}
+
+.hera-submit:disabled {
+  cursor: not-allowed;
+  opacity: .56;
+}
+
+.hera-form-footer>p {
+  margin: 7px 0 0;
+  color: color-mix(in srgb, var(--brand-charcoal) 67%, transparent);
+  font-size: 10px;
+  text-align: center;
+}
+
+.hera-spinner {
+  animation: hera-spin .8s linear infinite;
+}
+
+@keyframes hera-spin {
+  to { transform: rotate(360deg); }
+}
+
+.hera-success {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 26px;
+  text-align: center;
+}
+
+.hera-success-icon {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 16px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--brand-forest);
+  color: var(--brand-sand);
+}
+
+.hera-success p {
+  max-width: 290px;
+  margin: 4px 0 20px;
+  color: var(--brand-charcoal);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.hera-success button {
+  min-height: 42px;
+  padding: 9px 18px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--brand-gold);
+  color: var(--brand-charcoal);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+@media (max-width: 700px) {
+  .hera-launcher {
+    right: max(12px, env(safe-area-inset-right));
+    bottom: max(12px, env(safe-area-inset-bottom));
+    width: 60px;
+    min-width: 60px;
+    height: 60px;
+    min-height: 60px;
+    justify-content: center;
+    padding: 0;
+    border-radius: 50%;
+  }
+
+  .hera-launcher>span { display: none; }
+  .hera-avatar-launcher {
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    animation-name: hera-breathe-mobile;
+  }
+
+  @keyframes hera-breathe-mobile {
+    0%, 100% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.025); }
+  }
+
+  .hera-launcher:hover .hera-avatar-launcher { transform: translateX(-50%) scale(1.035); }
+
+  .hera-panel-header { gap: 9px; }
+  .hera-avatar-header { width: 46px; height: 46px; }
+  .hera-identity h2 { gap: 5px; font-size: 17px; }
+  .hera-message-row.assistant .hera-message { max-width: calc(95% - 39px); }
+  .hera-message-row.user .hera-message { max-width: 95%; }
+
+  .hera-panel {
+    right: max(10px, env(safe-area-inset-right));
+    bottom: max(10px, env(safe-area-inset-bottom));
+    width: calc(100vw - 20px);
+    height: calc(100dvh - 20px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    max-height: calc(100dvh - 20px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    border-radius: 15px;
+  }
+
+  .hera-panel-header {
+    min-height: 68px;
+    padding: 10px 12px;
+  }
+
+  .hera-messages {
+    gap: 11px;
+    padding: 13px 11px 16px;
+  }
+
+  .hera-message {
+    max-width: 95%;
+  }
+
+  .hera-lead-scroll {
+    padding: 12px 13px 15px;
+  }
+
+  .hera-form-footer {
+    padding-bottom: max(11px, env(safe-area-inset-bottom));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hera-panel,
+  .hera-avatar-launcher,
+  .hera-avatar-thinking::after,
+  .hera-thinking-dot,
+  .hera-spinner {
+    animation: none !important;
+  }
+
+  .hera-widget *,
+  .hera-widget *::before,
+  .hera-widget *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+
+}
+
+@media (max-width: 700px) and (prefers-reduced-motion: reduce) {
+  .hera-avatar-launcher,
+  .hera-launcher:hover .hera-avatar-launcher { transform: translateX(-50%); }
+}

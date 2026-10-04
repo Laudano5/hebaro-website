@@ -1,0 +1,349 @@
+/* Capacitación: scoped to this route, with one definition per visual role. */
+.training-page { --training-deep: #031f24; --training-cream: #f3efe7; --training-gold: #d6bf9f; --training-cyan: #65c5cc; color: #f5f3ee; background: var(--training-deep); }
+.training-page .wrap { width: min(calc(100% - 80px), 1440px); }
+.training-page .internal-eyebrow { color: var(--training-gold); font-size: 12px; letter-spacing: 1.8px; }
+.training-page h2 { margin: 0; font: 750 clamp(38px, 3.35vw, 48px)/1.17 Manrope, sans-serif; letter-spacing: -1.15px; }
+.training-page h3 { font-family: Manrope, sans-serif; }
+.training-page .button { min-height: 58px; padding: 16px 25px; border-radius: 4px; background: var(--training-gold); border-color: var(--training-gold); color: var(--training-deep); font-size: 14px; line-height: 1.4; text-align: left; }
+.training-page .button:hover { background: #b78e58; border-color: #b78e58; }
+.training-page .button:focus-visible { outline: 2px solid var(--training-cyan); outline-offset: 5px; }
+.training-page .button svg { flex-shrink: 0; }
+.training-hero { position: relative; isolation: isolate; overflow: hidden; background: var(--training-deep); }
+.training-hero-scene { position: absolute; z-index: -2; inset: 0 0 0 48%; display: flex; align-items: center; overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 18%); }
+.training-hero-scene img { object-fit: cover; object-position: 50% 30%; }
+.training-hero-inner { min-height: 650px; display: flex; align-items: center; padding-block: 48px; }
+.training-hero-copy { width: 48%; }
+.training-hero h1 { margin: 0; color: #f5f3ee; font: 800 clamp(58px, 4.5vw, 68px)/1.09 Manrope, sans-serif; letter-spacing: -1.8px; }
+.training-hero h1 em { color: var(--training-gold); font-style: normal; }
+.training-hero-copy > p:not(.internal-eyebrow) { max-width: 530px; margin: 24px 0 0; font-size: 18px; line-height: 1.65; }
+.training-hero-actions { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 28px; }
+.training-hero-actions .button-outline { background: #031f242e; color: #f5f3ee; border: 1px solid #f5f3ee99; }
+.training-hero-actions .button-outline:hover { background: #29454f; border-color: var(--training-gold); }
+.training-impact { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 23px; padding: 0; margin: 38px 0 0; list-style: none; }
+.training-impact li { display: flex; align-items: center; gap: 11px; }
+.training-impact svg { width: 42px; height: 42px; flex-shrink: 0; color: var(--training-gold); }
+.training-impact span { max-width: 145px; font-size: 14px; line-height: 1.5; }
+.training-approach { display: flex; align-items: center; min-height: 440px; padding: 95px 0; background: var(--training-cream); color: var(--training-deep); }
+.training-approach-inner { display: grid; grid-template-columns: .45fr .55fr; gap: 55px; align-items: center; }
+.training-approach .internal-eyebrow { color: #29454f; }
+.training-approach h2 em { font-style: normal; color: #b78e58; }
+.training-approach-inner > div > p:last-child { max-width: 530px; margin: 24px 0 0; color: #29454f; font-size: 18px; line-height: 1.6; }
+.training-approach-ideas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; text-align: center; }
+.training-approach-ideas li { padding: 0 24px; }
+.training-approach-ideas li + li { border-left: 1px solid #29454f66; }
+.training-approach-ideas svg { width: 82px; height: 82px; color: #b78e58; margin-bottom: 24px; }
+.training-approach-ideas h3 { margin: 0 0 11px; font-size: 28px; letter-spacing: -.5px; }
+.training-approach-ideas p { max-width: 160px; margin: 0 auto; color: #29454f; font-size: 18px; line-height: 1.6; }
+.training-areas { padding: 100px 0 110px; scroll-margin-top: 100px; }
+.training-areas .internal-section-heading { max-width: none; margin: 0 0 58px; text-align: left; }
+.training-areas .internal-section-heading .internal-eyebrow { justify-content: flex-start; }
+.training-areas .internal-section-heading h2 { color: #f5f3ee; }
+.training-area-columns { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.training-area-columns article { min-width: 0; padding: 0 36px; }
+.training-area-columns article:first-child { padding-left: 0; }
+.training-area-columns article:last-child { padding-right: 0; }
+.training-area-columns article + article { border-left: 1px solid #65c5cc66; }
+.training-area-symbol { display: flex; gap: 25px; align-items: center; margin-bottom: 28px; }
+.training-area-symbol span { font: 650 60px/1 Manrope, sans-serif; color: var(--training-gold); letter-spacing: -1.5px; }
+.training-area-symbol svg { width: 92px; height: 92px; color: var(--training-cyan); flex-shrink: 0; }
+.training-area-columns h3 { min-height: 62px; margin: 0 0 22px; font-size: 23px; line-height: 1.3; letter-spacing: -.45px; }
+.training-area-columns p { margin: 0; color: #a8bbba; font-size: 17px; line-height: 1.65; }
+.training-method { display: grid; grid-template-columns: .4fr .6fr; border-block: 1px solid #65c5cc33; }
+.training-method-photo { position: relative; min-height: 510px; overflow: hidden; }
+.training-method-photo img { object-fit: cover; object-position: 35% center; }
+.training-method-photo::after { position: absolute; inset: 0; background: linear-gradient(90deg, transparent 78%, #031f242e 88%, var(--training-deep) 100%); content: ""; pointer-events: none; }
+.training-method-copy { padding: 90px clamp(32px, 3.35vw, 56px); }
+.training-method h2 { font-size: clamp(38px, 3vw, 44px); }
+.training-method-copy > p:not(.internal-eyebrow) { margin: 18px 0 0; color: #a8bbba; font-size: 17px; line-height: 1.6; }
+.training-method-steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; margin: 40px 0 0; padding: 0; list-style: none; }
+.training-method-steps li { position: relative; min-width: 0; }
+.training-process-icon { display: grid; width: 76px; height: 76px; place-items: center; border: 1px solid #b78e58; border-radius: 50%; color: var(--training-gold); }
+.training-process-icon svg { width: 35px; height: 35px; }
+.training-step-arrow { position: absolute; top: 22px; right: 0; color: var(--training-gold); }
+.training-method-steps h3 { margin: 21px 0 12px; font-size: 18px; }
+.training-method-steps p { margin: 0; color: #a8bbba; font-size: 16px; line-height: 1.6; }
+.training-result { padding: 95px 0; background: var(--training-cream); color: var(--training-deep); }
+.training-result .internal-section-heading { max-width: 1200px; margin-bottom: 48px; }
+.training-result .internal-section-heading .internal-eyebrow { color: #29454f; margin-bottom: 10px; }
+.training-result .internal-section-heading h2 { color: var(--training-deep); font-size: clamp(38px, 3.35vw, 48px); }
+.training-result .internal-section-heading > p:last-child { max-width: none; color: #29454f; font-size: 18px; }
+.training-result-journey { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); width: min(100%, 1100px); padding: 0; margin: 0 auto; list-style: none; text-align: center; }
+.training-result-journey li { position: relative; }
+.training-result-journey li > span { display: grid; width: 92px; height: 92px; margin: 0 auto; place-items: center; background: var(--training-deep); border-radius: 50%; color: var(--training-gold); }
+.training-result-journey li > span svg { width: 43px; height: 43px; }
+.training-result-journey h3 { margin: 20px 0 0; font-size: 20px; }
+.training-result-arrow { position: absolute; top: 32px; right: -36px; width: 72px; color: #29454f; }
+.training-cta { position: relative; isolation: isolate; overflow: hidden; display: flex; align-items: center; min-height: 410px; padding: 55px 0; background: var(--training-deep); }
+.training-cta-photo { object-fit: cover; object-position: 50% 55%; }
+.training-cta::after { position: absolute; z-index: 1; inset: 0; background: linear-gradient(90deg, #031f24f5 0%, #031f24de 30%, #031f2499 50%, #031f2426 75%, transparent 100%); content: ""; pointer-events: none; }
+.training-cta > .wrap { position: relative; z-index: 2; }
+.training-cta-copy { max-width: 780px; }
+.training-cta h2 { font-size: clamp(42px, 3.4vw, 50px); }
+.training-cta-copy > p:not(.internal-eyebrow) { max-width: 590px; margin: 20px 0 28px; font-size: 18px; line-height: 1.6; }
+@media (max-width: 1200px) {
+  .training-page .wrap { width: calc(100% - 64px); }
+  .training-hero-inner { min-height: 630px; }
+  .training-hero h1 { font-size: clamp(46px, 4.5vw, 58px); }
+  .training-hero-copy > p:not(.internal-eyebrow) { font-size: 17px; }
+  .training-hero-actions { gap: 12px; }
+  .training-page .button { padding-inline: 19px; font-size: 13px; }
+  .training-impact { gap: 15px; }
+  .training-impact svg { width: 36px; height: 36px; }
+  .training-impact span { font-size: 13px; }
+  .training-approach-inner { gap: 30px; }
+  .training-approach-ideas li { padding-inline: 16px; }
+  .training-approach-ideas svg { width: 70px; height: 70px; }
+  .training-approach-ideas h3 { font-size: 25px; }
+  .training-approach-ideas p { font-size: 17px; }
+  .training-area-columns article { padding-inline: 25px; }
+  .training-area-symbol { gap: 20px; }
+  .training-area-symbol span { font-size: 54px; }
+  .training-area-symbol svg { width: 55px; height: 55px; }
+  .training-area-columns h3 { min-height: 82px; font-size: 21px; }
+  .training-area-columns p { font-size: 16px; }
+  .training-method-copy { padding: 75px 30px; }
+  .training-method h2 { font-size: 38px; }
+  .training-method-steps { gap: 16px; }
+  .training-process-icon { width: 64px; height: 64px; }
+  .training-step-arrow { width: 25px; top: 16px; right: -10px; }
+  .training-method-steps h3 { font-size: 16px; }
+}
+@media (max-width: 900px) {
+  .training-hero-copy { width: 55%; }
+  .training-hero-scene { left: 45%; }
+  .training-hero h1 { font-size: 44px; }
+  .training-hero-actions { flex-direction: column; align-items: flex-start; }
+  .training-impact li { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .training-approach-inner { grid-template-columns: 1fr; gap: 45px; }
+  .training-approach { min-height: 0; padding-block: 75px; }
+  .training-area-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 45px 0; }
+  .training-area-columns article:nth-child(odd) { padding-left: 0; border-left: 0; }
+  .training-area-columns article:nth-child(even) { padding-right: 0; }
+  .training-area-columns h3 { min-height: 0; }
+  .training-areas { padding-block: 80px; }
+  .training-method { grid-template-columns: 1fr; }
+  .training-method-photo { min-height: 360px; }
+  .training-method-photo::after { background: linear-gradient(180deg, transparent 78%, #031f242e 88%, var(--training-deep) 100%); }
+  .training-method-copy { width: calc(100% - 64px); margin-inline: auto; padding: 75px 0; }
+  .training-method-steps { gap: 24px; }
+  .training-step-arrow { right: 0; }
+  .training-result { padding-block: 75px; }
+  .training-cta-copy { max-width: 670px; }
+}
+@media (max-width: 600px) {
+  .training-page .wrap { width: calc(100% - 40px); }
+  .training-page .internal-eyebrow { font-size: 11px; }
+  .training-page h2 { font-size: clamp(32px, 7vw, 38px); letter-spacing: -.9px; }
+  .training-hero-inner { display: block; padding: 42px 0 30px; min-height: 0; }
+  .training-hero-copy { width: 100%; }
+  .training-hero h1 { font-size: clamp(38px, 9.5vw, 52px); letter-spacing: -1.4px; }
+  .training-desktop-break { display: none; }
+  .training-hero-copy > p:not(.internal-eyebrow) { font-size: 16px; }
+  .training-hero-scene { position: relative; inset: auto; width: 100%; height: auto; mask-image: none; }
+  .training-hero-scene { aspect-ratio: 820 / 620; }
+  .training-hero { display: flex; flex-direction: column; }
+  .training-hero-inner { order: -1; }
+  .training-hero-actions { align-items: stretch; }
+  .training-hero-actions .button { justify-content: space-between; font-size: 14px; }
+  .training-impact { gap: 16px; margin-top: 30px; }
+  .training-impact span { font-size: 12px; }
+  .training-impact svg { width: 36px; height: 36px; }
+  .training-approach { padding-block: 65px; }
+  .training-approach-inner > div > p:last-child { font-size: 16px; }
+  .training-approach-ideas li { padding-inline: 9px; }
+  .training-approach-ideas svg { width: 53px; height: 53px; margin-bottom: 18px; }
+  .training-approach-ideas h3 { font-size: 21px; }
+  .training-approach-ideas p { font-size: 14px; }
+  .training-areas { padding-block: 65px; }
+  .training-areas .internal-section-heading { margin-bottom: 40px; }
+  .training-area-columns { grid-template-columns: 1fr; gap: 32px; }
+  .training-area-columns article { padding: 0; }
+  .training-area-columns article + article { border-left: 0; border-top: 1px solid #65c5cc44; padding-top: 32px; }
+  .training-area-symbol { margin-bottom: 18px; }
+  .training-area-columns h3 { margin-bottom: 15px; font-size: 23px; }
+  .training-area-columns p { font-size: 16px; }
+  .training-method-photo { min-height: 300px; }
+  .training-method-copy { width: calc(100% - 40px); padding-block: 65px; }
+  .training-method h2 { font-size: 34px; }
+  .training-method-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 34px 24px; }
+  .training-method-steps h3 { font-size: 18px; }
+  .training-step-arrow { display: none; }
+  .training-method-steps p { font-size: 15px; }
+  .training-result { padding-block: 65px; }
+  .training-result .internal-section-heading h2 { font-size: 34px; }
+  .training-result .internal-section-heading > p:last-child { font-size: 16px; }
+  .training-result-journey li > span { width: 60px; height: 60px; }
+  .training-result-journey li > span svg { width: 29px; height: 29px; }
+  .training-result-journey h3 { font-size: 12px; margin-top: 16px; }
+  .training-result-arrow { width: 22px; right: -11px; top: 14px; }
+  .training-cta { min-height: 0; padding-block: 65px; }
+  .training-cta-photo { object-position: 55% center; }
+  .training-cta h2 { font-size: 36px; }
+  .training-cta-copy > p:not(.internal-eyebrow) { font-size: 16px; }
+  .training-cta-copy > .button { width: 100%; justify-content: space-between; font-size: 14px; }
+}
+
+/* =========================================================
+   CAPACITACION — DESKTOP SCALE FIX
+   ========================================================= */
+
+@media (min-width: 1201px) {
+
+  .training-page {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .training-page .wrap {
+    width: calc(100% - 120px) !important;
+    max-width: 1480px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* HERO */
+
+  .training-hero {
+    min-height: 650px !important;
+  }
+
+  .training-hero-inner {
+    min-height: 650px !important;
+    padding-top: 70px !important;
+    padding-bottom: 70px !important;
+  }
+
+  .training-hero-copy {
+    width: 48% !important;
+    max-width: 680px !important;
+  }
+
+  .training-hero h1 {
+    font-size: 68px !important;
+    line-height: 1.04 !important;
+    letter-spacing: -2.2px !important;
+  }
+
+  .training-hero-copy > p:not(.internal-eyebrow) {
+    max-width: 600px !important;
+    font-size: 18px !important;
+    line-height: 1.6 !important;
+  }
+
+  .training-hero-scene {
+    left: 48% !important;
+    right: 0 !important;
+  }
+
+  /* NUESTRO ENFOQUE */
+
+  .training-approach {
+    min-height: 440px !important;
+    padding: 95px 0 !important;
+  }
+
+  .training-approach-inner {
+    grid-template-columns: 0.44fr 0.56fr !important;
+    gap: 70px !important;
+  }
+
+  .training-approach h2 {
+    font-size: 48px !important;
+  }
+
+  /* AREAS DE CAPACITACION */
+
+  .training-areas {
+    padding: 105px 0 110px !important;
+  }
+
+  .training-areas .internal-section-heading {
+    margin-bottom: 65px !important;
+  }
+
+  .training-area-columns {
+    width: 100% !important;
+  }
+
+  .training-area-columns article {
+    padding-left: 36px !important;
+    padding-right: 36px !important;
+  }
+
+  .training-area-columns article:first-child {
+    padding-left: 0 !important;
+  }
+
+  .training-area-columns article:last-child {
+    padding-right: 0 !important;
+  }
+
+  .training-area-symbol span {
+    font-size: 58px !important;
+  }
+
+  .training-area-symbol svg {
+    width: 64px !important;
+    height: 64px !important;
+  }
+
+  .training-area-columns h3 {
+    font-size: 23px !important;
+  }
+
+  .training-area-columns p {
+    font-size: 17px !important;
+    line-height: 1.65 !important;
+  }
+
+  /* METODOLOGIA */
+
+  .training-method {
+    min-height: 520px !important;
+    grid-template-columns: 42% 58% !important;
+  }
+
+  .training-method-photo {
+    min-height: 520px !important;
+  }
+
+  .training-method-copy {
+    padding: 90px 60px !important;
+  }
+
+  .training-method h2 {
+    font-size: 46px !important;
+  }
+
+  .training-process-icon {
+    width: 74px !important;
+    height: 74px !important;
+  }
+
+  /* RESULTADO */
+
+  .training-result {
+    padding: 100px 0 !important;
+  }
+
+  .training-result-journey {
+    max-width: 1150px !important;
+  }
+
+  .training-result-journey li > span {
+    width: 90px !important;
+    height: 90px !important;
+  }
+
+  /* CTA */
+
+  .training-cta {
+    min-height: 400px !important;
+    padding: 70px 0 !important;
+  }
+
+  .training-cta h2 {
+    font-size: 50px !important;
+  }
+}
+

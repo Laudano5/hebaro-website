@@ -1,0 +1,115 @@
+/* Nosotros: one scoped composition, with no motion or shared-page overrides. */
+.about-page { --about-cyan: #65c5cc; --about-gold: #d6bf9f; --about-muted: #a8bbba; background: #031f24; color: #f5f3ee; }
+.about-page .wrap { width: min(90.5%, 1280px); }
+.about-page .internal-eyebrow { color: var(--about-gold); }
+.about-page .internal-hero { min-height: 640px; padding: 56px 0 62px; background: #031f24; }
+.about-page .internal-hero::before { opacity: .12; mask-image: linear-gradient(90deg, transparent, #000); }
+.about-page .internal-hero::after, .about-page .internal-hero-pattern { display: none; }
+.about-page .internal-hero-layout.has-visual { display: grid; width: min(90.5%, 1360px); grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: 24px; min-height: 510px; }
+.about-page .internal-hero-layout.has-visual .internal-hero-content { width: 100%; padding: 0; min-width: 0; }
+.about-page .internal-hero h1 { font-size: clamp(42px, 4.45vw, 65px); line-height: 1.12; letter-spacing: -2.1px; color: #f5f3ee; }
+.about-page .internal-hero h1 em { color: var(--about-gold); }
+.about-page .internal-hero-copy { max-width: 510px; margin-top: 28px; color: var(--about-muted); font-size: 16px; line-height: 1.85; }
+.about-page .internal-hero-visual { width: 100%; min-width: 0; height: auto; filter: none; }
+.about-page .internal-hero-index { color: var(--about-muted); font-size: 8px; }
+.pr-network { width: 100%; background: radial-gradient(ellipse at 50% 48%, #65c5cc18, transparent 68%); }
+.pr-network svg { display: block; width: 100%; height: auto; }
+.pr-label { fill: #a8bbba; font: 9px Manrope, sans-serif; letter-spacing: 1.1px; }
+.pr-network-caption { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 0; color: var(--about-muted); font-size: 11px; letter-spacing: .3px; }
+.pr-network-caption span { width: 22px; height: 1px; background: var(--about-gold); }
+.about-intro-section { padding: 98px 0; border-block: 1px solid #b78e5826; background: #f3efe7; }
+.about-intro-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 72px; }
+.about-intro-section .internal-eyebrow { color: #b78e58; }
+.about-statement h2 { margin: 0; color: #031f24; font: 750 clamp(32px, 3.55vw, 49px)/1.23 Manrope, sans-serif; letter-spacing: -1.3px; }
+.about-statement h2 em { font-style: normal; color: #b78e58; }
+.about-intro-copy { border-left: 2px solid #b78e58; padding: 12px 0 12px 32px; }
+.about-intro-copy p { margin: 0; color: #29454f; font-size: 15px; line-height: 1.85; }
+.about-intro-copy p+p { margin-top: 18px; }
+.about-vision-section { padding: 100px 0; background: #29454f; }
+.about-vision-inner { display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr); align-items: center; gap: 85px; }
+.about-vision-inner h2 { max-width: 660px; margin: 0; font: 750 clamp(32px, 3.4vw, 47px)/1.2 Manrope, sans-serif; letter-spacing: -1px; }
+.about-vision-inner > div > p:not(.internal-eyebrow) { max-width: 630px; margin: 22px 0 0; color: #f5f3ee; font-size: 15px; line-height: 1.8; }
+.about-connection { position: relative; width: min(100%, 410px); justify-self: center; aspect-ratio: 1; }
+.about-connection > svg { width: 100%; fill: none; stroke: #65c5cc80; stroke-width: 1; }
+.about-connection .connection-node { fill: #8edce0; stroke: #103c42; stroke-width: 3; }
+.connection-core { position: absolute; inset: 30%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; border: 1px solid #d6bf9f66; border-radius: 50%; background: radial-gradient(circle, #103c42, #031f24); color: var(--about-gold); }
+.connection-core strong { font: 700 36px Manrope, sans-serif; letter-spacing: 2px; }
+.connection-core span { font-size: 6px; letter-spacing: 1px; }
+.about-vision-ideas { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 25px; margin: 30px 0 0; padding: 25px 0 0; border-top: 1px solid #65c5cc55; list-style: none; }
+.about-vision-ideas li { display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 600; color: #f5f3ee; }
+.about-vision-ideas svg, .about-capabilities svg { color: var(--about-cyan); flex-shrink: 0; }
+.about-paths-section { padding: 80px 0 100px; border-top: 1px solid #65c5cc1a; background: #f3efe7; }
+.about-page .internal-section-heading h2 { color: #f5f3ee; }
+.about-paths-section .internal-section-heading h2 { color: #031f24; }
+.about-paths-section .internal-section-heading .internal-eyebrow { color: #b78e58; }
+.about-path-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; margin-top: 42px; }
+.about-path { display: flex; min-width: 0; flex-direction: column; padding: 35px; border: 1px solid #65c5cc33; border-radius: 8px; background: #29454f; }
+.about-path-market { background: linear-gradient(#031f24e6, #031f24ed), url("/public/images/marketplace%20background.jpg") center / cover; }
+.about-path .internal-eyebrow { margin-bottom: 0; font-size: 10px; letter-spacing: 1.8px; }
+.about-path h3 { margin: 24px 0 14px; color: #f5f3ee; font: 700 clamp(24px, 2.3vw, 32px)/1.2 Manrope, sans-serif; letter-spacing: -.7px; }
+.about-path > p:not(.internal-eyebrow) { margin: 0; min-height: 76px; color: var(--about-muted); font-size: 14px; line-height: 1.8; }
+.about-diagram { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 30px; padding: 22px 0; background: radial-gradient(ellipse, #65c5cc0f, transparent 70%); }
+.about-diagram::before { position: absolute; top: 49px; left: 16%; right: 16%; height: 1px; background: linear-gradient(90deg, #65c5cc55, #8edce0, #65c5cc55); content: ""; }
+.about-diagram-node { z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.about-diagram-node > span { display: grid; width: 56px; height: 56px; place-items: center; border: 1px solid #65c5cc66; border-radius: 9px; background: #0b2d34; color: #8edce0; }
+.about-diagram-node:nth-child(2) > span { border-color: #d6bf9f80; color: var(--about-gold); }
+.about-diagram-node small { color: var(--about-muted); font-size: 10px; }
+.about-capabilities { display: grid; grid-template-columns: 1fr; gap: 15px; list-style: none; padding: 24px 0 28px; margin: 0; }
+.about-capabilities li { display: flex; align-items: center; gap: 12px; font-size: 13px; }
+.about-path > a { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-top: auto; padding-top: 22px; border-top: 1px solid #65c5cc26; color: var(--about-gold); font-size: 13px; font-weight: 700; }
+.about-path > a:hover { color: #8edce0; }
+.about-path > a:focus-visible { outline: 2px solid #8edce0; outline-offset: 6px; }
+.about-page .principles-section { background: #031f24; }
+.about-page .principles-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; }
+.about-page .principle-card { display: block; min-height: 0; padding: 24px 0 0; border-top: 1px solid #65c5cc55; background: transparent; }
+.about-page .principle-card:nth-child(even) { border-top-color: #d6bf9f55; }
+.about-page .principle-number { margin: 0 0 22px; color: #d6bf9f80; font: 600 48px/1 Manrope, sans-serif; letter-spacing: -2px; }
+.about-page .principle-card h3 { margin: 17px 0 10px; color: #f5f3ee; }
+.about-page .principle-card p { color: var(--about-muted); }
+.about-page .principle-card > svg { color: var(--about-cyan); }
+.about-page .company-identity-section { padding-block: 32px; background: #1c3036; border-color: #65c5cc26; }
+.about-page .company-identity-inner h2 { color: #f5f3ee; }
+.about-page .identity-statements p { border-color: #65c5cc33; color: var(--about-gold); }
+.about-page .internal-final-cta { padding-block: 80px; background: linear-gradient(90deg, #031f24f2, #031f24c9), url("/public/images/Hebaro%20imagen%20fondo.png") center / cover; border-top: 1px solid #65c5cc33; }
+.about-page .internal-final-cta h2 { color: #f5f3ee; font-size: clamp(36px, 4.5vw, 60px); line-height: 1.12; letter-spacing: -1.5px; }
+.about-page .internal-final-actions .button { background: #b78e58; border-color: #b78e58; color: #031f24; }
+.about-page .internal-final-actions .button:hover { background: #d6bf9f; border-color: #d6bf9f; }
+.about-page .internal-final-cta-inner > div > p:last-child { color: var(--about-muted); }
+@media (max-width: 1100px) {
+  .about-page .internal-hero { min-height: 540px; padding-block: 45px; }
+  .about-page .internal-hero-layout.has-visual { min-height: 450px; gap: 15px; }
+  .about-page .internal-hero h1 { font-size: 45px; }
+  .about-intro-grid, .about-vision-inner { gap: 40px; }
+  .about-path { padding: 27px; }
+}
+@media (max-width: 800px) {
+  .about-page .internal-hero { padding: 55px 0; min-height: 0; }
+  .about-page .internal-hero-layout.has-visual { grid-template-columns: 1fr; min-height: 0; gap: 12px; max-width: 620px; }
+  .about-page .internal-hero h1 { font-size: clamp(38px, 7vw, 54px); letter-spacing: -1.4px; }
+  .about-page .internal-hero-copy { max-width: 100%; margin-top: 22px; }
+  .about-page .internal-hero-visual { min-height: 0; }
+  .about-intro-section, .about-vision-section, .about-paths-section { padding-block: 65px; }
+  .about-intro-grid { grid-template-columns: 1fr; gap: 28px; }
+  .about-vision-inner { grid-template-columns: minmax(0, .6fr) minmax(0, 1.4fr); gap: 25px; }
+  .about-vision-ideas { gap: 18px 15px; }
+  .about-vision-ideas li { font-size: 12px; }
+  .about-page .principles-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+  .about-page .internal-final-cta { padding-block: 58px; }
+  .about-path-grid { grid-template-columns: 1fr; gap: 24px; }
+  .about-path > p:not(.internal-eyebrow) { min-height: 0; }
+}
+@media (max-width: 500px) {
+  .about-page .internal-hero-copy { font-size: 14px; }
+  .about-page .internal-hero h1 { font-size: clamp(34px, 9.6vw, 44px); }
+  .about-statement h2, .about-vision-inner h2 { font-size: 32px; }
+  .about-intro-copy { padding-left: 22px; }
+  .about-vision-inner { grid-template-columns: 1fr; gap: 25px; }
+  .about-connection { width: 260px; justify-self: center; }
+  .about-vision-ideas { grid-template-columns: 1fr 1fr; column-gap: 12px; }
+  .about-vision-ideas li { font-size: 11px; gap: 8px; }
+  .about-path { padding: 25px 22px; }
+  .pr-network-caption { font-size: 9px; gap: 6px; }
+  .about-capabilities li { font-size: 12px; }
+  .about-page .principles-grid { grid-template-columns: 1fr; gap: 28px; }
+  .about-page .principle-number { font-size: 42px; }
+}
