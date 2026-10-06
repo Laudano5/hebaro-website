@@ -2,7 +2,7 @@ import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 import { HERA_SERVICES, type HeraService } from "@/lib/hera/types";
 import { checkConsultationRateLimit } from "@/lib/hera/rate-limit";
-import { insertHeraLead } from "@/lib/hera/supabase-leads";
+import { ConsultationStorageError, storeConsultationLead } from "@/lib/consultations/storage";
 
 export const runtime = "nodejs";
 
@@ -94,7 +94,7 @@ export async function POST(request: NextRequest) {
   const from = process.env.CONTACT_FROM_EMAIL?.trim();
   const to = process.env.CONTACT_TO_EMAIL?.trim();
   if (!apiKey || !from || !to) {
-    console.error("Consultation email configuration missing: RESEND_API_KEY, CONTACT_FROM_EMAIL, or CONTACT_TO_EMAIL");
+    console.error("CONSULTATION_EMAIL_FAILED", { code: "EMAIL_NOT_CONFIGURED" });
     return errorResponse("No pudimos enviar tu solicitud. Inténtalo nuevamente.", 503);
   }
   const submittedAt = new Date().toISOString();
@@ -124,9 +124,9 @@ export async function POST(request: NextRequest) {
   </table>
 </body></html>`;
 
-  let submissionStage: "lead storage" | "email delivery" = "lead storage";
+  let storageSucceeded = false;
   try {
-    await insertHeraLead({
+    await storeConsultationLead({
       name,
       company,
       email,
@@ -140,7 +140,15 @@ export async function POST(request: NextRequest) {
       source: "homepage-consultation",
       consent_at: submittedAt,
     });
-    submissionStage = "email delivery";
+    storageSucceeded = true;
+    console.info("CONSULTATION_STORAGE_SUCCESS");
+  } catch (error) {
+    console.error("CONSULTATION_STORAGE_FAILED", error instanceof ConsultationStorageError
+      ? { code: error.code, message: error.message, status: error.status }
+      : { code: "STORAGE_UNEXPECTED_ERROR" });
+  }
+
+  try {
     const { data: sent, error } = await new Resend(apiKey).emails.send({
       from,
       to,
@@ -150,12 +158,13 @@ export async function POST(request: NextRequest) {
       text: ["NUEVA SOLICITUD DE CONSULTA", ...emailFields.map(([label, value]) => `${label}:\n${value}`)].join("\n\n"),
     });
     if (error || !sent?.id) {
-      console.error("Consultation email provider did not accept the request");
+      console.error("CONSULTATION_EMAIL_FAILED", { code: "PROVIDER_NOT_ACCEPTED", storageSucceeded });
       return errorResponse("No pudimos enviar tu solicitud. Inténtalo nuevamente.", 502);
     }
+    console.info("CONSULTATION_EMAIL_SUCCESS", { storageSucceeded, degraded: !storageSucceeded });
     return NextResponse.json({ ok: true }, { status: 201 });
   } catch {
-    console.error(`Consultation submission failed during ${submissionStage}`);
+    console.error("CONSULTATION_EMAIL_FAILED", { code: "PROVIDER_REQUEST_FAILED", storageSucceeded });
     return errorResponse("No pudimos enviar tu solicitud. Inténtalo nuevamente.", 502);
   }
 }
