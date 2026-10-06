@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { ArrowRight, Compass, HeartHandshake, Lightbulb, Puzzle, Zap, Code2, Workflow, GraduationCap, Eye, Users, Handshake, TrendingUp, Network } from "lucide-react";
 import Link from "next/link";
 import { SiteHeader } from "../site-header";
 import SiteFooter from "../site-footer";
 import HeraWidget from "../hera-widget";
-import { ConsultationLink, InternalPageHero, SectionHeading } from "../internal-page-components";
+import { InternalPageHero, SectionHeading } from "../internal-page-components";
 
 import { PuertoRicoNetwork, ConnectionMotif, PathDiagram } from "./about-visuals";
 import "./about.css";
@@ -84,21 +85,18 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="company-identity-section">
-          <div className="wrap company-identity-inner">
-            <div><p className="internal-eyebrow"><span />IDENTIDAD EMPRESARIAL</p><h2>Propiedad de veteranos y personas con discapacidades.</h2></div>
-            <div className="identity-statements"><p>Veteran-Owned Business</p><p>Disabled-Owned Business</p></div>
-          </div>
-        </section>
-
-        <section className="internal-final-cta">
+        <section className="internal-final-cta about-business-identity" aria-labelledby="business-identity-title">
           <div className="wrap internal-final-cta-inner">
-            <div><p className="internal-eyebrow"><span />HEBARO · PUERTO RICO</p><h2>Construyamos lo próximo.</h2><p>Si tienes una idea, un proceso que quieres mejorar o un reto tecnológico, queremos conocerlo.</p></div>
-            <div className="internal-final-actions"><ConsultationLink /></div>
+            <div>
+              <p className="internal-eyebrow"><span />HEBARO · IDENTIDAD EMPRESARIAL</p>
+              <h2 id="business-identity-title">Service-Disabled Veteran-Owned<br /><em>Small Business.</em></h2>
+              <p>HEBARO combina experiencia, tecnología y ejecución<br className="identity-desktop-break" /> para crear soluciones con impacto real.</p>
+            </div>
+            <Image className="about-certification-logo" src="/public/images/sba-sdvosb-certified.png" alt="SBA, U.S. Small Business Administration: Service-Disabled Veteran-Owned Certified" width={876} height={1092} sizes="(max-width: 800px) 100px, 130px" />
           </div>
         </section>
       </main>
-      <SiteFooter />
+      <SiteFooter businessIdentity="Service-Disabled Veteran-Owned Small Business" />
       <HeraWidget />
     </>
   );

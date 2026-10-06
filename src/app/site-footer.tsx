@@ -1,4 +1,4 @@
-export default function SiteFooter() {
+export default function SiteFooter({ businessIdentity = "Veteran-Owned & Disabled-Owned Business" }: { businessIdentity?: string }) {
   return (
     <footer className="footer">
       <div className="footer-bottom">
@@ -19,7 +19,7 @@ export default function SiteFooter() {
 
         <div className="wrap footer-business">
           <p>Hecho en Puerto Rico por HEBARO LLC</p>
-          <p>Veteran-Owned &amp; Disabled-Owned Business</p>
+          <p>{businessIdentity}</p>
         </div>
       </div>
     </footer>
