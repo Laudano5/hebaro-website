@@ -22,6 +22,12 @@ function optionalText(value: unknown, maxLength: number): string | null | undefi
   return cleanText(value, maxLength) ?? undefined;
 }
 
+function escapeHtml(value: string): string {
+  return value.replace(/[&<>"']/g, (character) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+  })[character]!);
+}
+
 function errorResponse(message: string, status: number, headers?: HeadersInit) {
   return NextResponse.json({ error: message }, { status, headers });
 }
@@ -65,10 +71,11 @@ export async function POST(request: NextRequest) {
   const email = optionalText(data.email, 254);
   const phone = optionalText(data.phone, 40);
   const description = cleanText(data.description, 2_000);
-  const serviceInterest = data.service_interest === null || data.service_interest === undefined || data.service_interest === "No estoy seguro"
+  const service = optionalText(data.service_interest, 120);
+  const serviceInterest = service === null || service === "" || service === "No estoy seguro"
     ? null
-    : HERA_SERVICES.includes(data.service_interest as HeraService)
-      ? data.service_interest as HeraService
+    : HERA_SERVICES.includes(service as HeraService)
+      ? service as HeraService
       : undefined;
 
   if (!name) return errorResponse("Escribe tu nombre (máximo 120 caracteres).", 400);
@@ -91,6 +98,31 @@ export async function POST(request: NextRequest) {
     return errorResponse("No pudimos enviar tu solicitud. Inténtalo nuevamente.", 503);
   }
   const submittedAt = new Date().toISOString();
+  const emailFields = [
+    ["Nombre", name],
+    ["Empresa", company || "No especificada"],
+    ["Email", email || "No proporcionado"],
+    ["Teléfono", phone || "No proporcionado"],
+    ["Área de interés", serviceInterest || "No especificada"],
+    ["Mensaje", description],
+    ["Fecha", submittedAt],
+    ["Origen", "HEBARO.com"],
+  ];
+  // Table layout and inline styles work in Outlook. All lead content is escaped.
+  const html = `<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>Nueva solicitud de consulta</title></head>
+<body style="margin:0;padding:24px;background-color:#f3efe7;font-family:Arial,Helvetica,sans-serif;color:#031f24;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width:600px;background-color:#ffffff;">
+    <tr><td style="padding:24px;background-color:#031f24;color:#ffffff;">
+      <p style="margin:0 0 12px;font-size:18px;font-weight:bold;color:#d6bf9f;">HEBARO</p>
+      <h1 style="margin:0;font-size:20px;line-height:1.4;">NUEVA SOLICITUD DE CONSULTA</h1>
+    </td></tr>
+    ${emailFields.map(([label, value]) => `<tr><td style="padding:14px 24px;border-bottom:1px solid #eeeeee;">
+      <p style="margin:0 0 6px;font-size:12px;font-weight:bold;">${escapeHtml(label)}:</p>
+      <p style="margin:0;font-size:15px;line-height:1.6;word-wrap:break-word;">${escapeHtml(value).replace(/\r\n|\r|\n/g, "<br>")}</p>
+    </td></tr>`).join("")}
+  </table>
+</body></html>`;
 
   try {
     await insertHeraLead({
@@ -112,17 +144,8 @@ export async function POST(request: NextRequest) {
       to,
       ...(email ? { replyTo: email } : {}),
       subject: "Nueva solicitud de consulta — HEBARO.com",
-      text: [
-        "NUEVA SOLICITUD DE CONSULTA",
-        `Nombre: ${name}`,
-        `Empresa: ${company || "No especificada"}`,
-        `Email: ${email || "No proporcionado"}`,
-        `Teléfono: ${phone || "No proporcionado"}`,
-        `Área de interés: ${serviceInterest || "No especificada"}`,
-        `Mensaje:\n${description}`,
-        `Fecha: ${submittedAt}`,
-        "Origen: HEBARO.com",
-      ].join("\n\n"),
+      html,
+      text: ["NUEVA SOLICITUD DE CONSULTA", ...emailFields.map(([label, value]) => `${label}:\n${value}`)].join("\n\n"),
     });
     if (error || !sent?.id) {
       console.error("Consultation email provider did not accept the request");

@@ -89,8 +89,8 @@ export default function ConsultationForm() {
     return (
       <section className="consultation-success" role="status" aria-live="polite">
         <span className="consultation-success-icon"><Check size={23} /></span>
-        <h2>¡Gracias! Recibimos tu solicitud.</h2>
-        <p>El equipo de HEBARO revisará la información y se comunicará contigo.</p>
+        <h2>Gracias.</h2>
+        <p>Recibimos tu solicitud y nos comunicaremos contigo pronto.</p>
         <Link className="consultation-back-link" href="/">Volver al inicio<ArrowRight size={17} /></Link>
       </section>
     );
