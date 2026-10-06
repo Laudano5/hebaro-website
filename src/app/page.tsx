@@ -88,7 +88,7 @@ export default function Home() {
               <a className="button" href={marketplaceUrl}>Explorar el ecosistema <ArrowRight size={17} aria-hidden="true" /></a>
             </div>
             <div className={styles.marketplaceCards}>
-              <a className={styles.feature} href="#contacto">
+              <a className={styles.feature} href="https://www.artesenpr.com" target="_blank" rel="noopener noreferrer">
                 <div className={styles.featurePhoto}><Image src="/public/images/artesenpr card.png" alt="ArtesenPR: artesanías puertorriqueñas hechas a mano." fill quality={90} sizes="(max-width: 700px) 100vw, (max-width: 1100px) 45vw, 28vw" /></div>
                 <div className={styles.featureCopy}><h3>ArtesenPR</h3><p>Descubre productos de artesanos de Puerto Rico.</p><ArrowRight size={19} aria-hidden="true" /></div>
               </a>

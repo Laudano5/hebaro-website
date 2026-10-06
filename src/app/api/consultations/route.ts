@@ -1,3 +1,4 @@
+import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 import { HERA_SERVICES, type HeraService } from "@/lib/hera/types";
 import { checkConsultationRateLimit } from "@/lib/hera/rate-limit";
@@ -18,7 +19,7 @@ function cleanText(value: unknown, maxLength: number): string | null {
 
 function optionalText(value: unknown, maxLength: number): string | null | undefined {
   if (value === null || value === undefined || value === "") return null;
-  return cleanText(value, maxLength);
+  return cleanText(value, maxLength) ?? undefined;
 }
 
 function errorResponse(message: string, status: number, headers?: HeadersInit) {
@@ -56,6 +57,9 @@ export async function POST(request: NextRequest) {
   }
 
   const data = body as Record<string, unknown>;
+  if (data.website !== undefined && (typeof data.website !== "string" || data.website.trim())) {
+    return errorResponse("La solicitud no es válida.", 400);
+  }
   const name = cleanText(data.name, 120);
   const company = optionalText(data.company, 200);
   const email = optionalText(data.email, 254);
@@ -79,6 +83,15 @@ export async function POST(request: NextRequest) {
   if (serviceInterest === undefined) return errorResponse("El área de servicio no es válida.", 400);
   if (data.consent !== true) return errorResponse("Confirma el consentimiento antes de enviar.", 400);
 
+  const apiKey = process.env.RESEND_API_KEY?.trim();
+  const from = process.env.CONTACT_FROM_EMAIL?.trim();
+  const to = process.env.CONTACT_TO_EMAIL?.trim();
+  if (!apiKey || !from || !to) {
+    console.error("Consultation email configuration missing: RESEND_API_KEY, CONTACT_FROM_EMAIL, or CONTACT_TO_EMAIL");
+    return errorResponse("No pudimos enviar tu solicitud. Inténtalo nuevamente.", 503);
+  }
+  const submittedAt = new Date().toISOString();
+
   try {
     await insertHeraLead({
       name,
@@ -92,13 +105,32 @@ export async function POST(request: NextRequest) {
       conversation_summary: description,
       status: "new",
       source: "homepage-consultation",
-      consent_at: new Date().toISOString(),
+      consent_at: submittedAt,
     });
-    return NextResponse.json({ ok: true }, { status: 201 });
-  } catch (error) {
-    if (error instanceof Error && error.message === "HERA lead storage is not configured") {
-      return errorResponse("El seguimiento de HEBARO todavía no está configurado. Intenta más tarde.", 503);
+    const { data: sent, error } = await new Resend(apiKey).emails.send({
+      from,
+      to,
+      ...(email ? { replyTo: email } : {}),
+      subject: "Nueva solicitud de consulta — HEBARO.com",
+      text: [
+        "NUEVA SOLICITUD DE CONSULTA",
+        `Nombre: ${name}`,
+        `Empresa: ${company || "No especificada"}`,
+        `Email: ${email || "No proporcionado"}`,
+        `Teléfono: ${phone || "No proporcionado"}`,
+        `Área de interés: ${serviceInterest || "No especificada"}`,
+        `Mensaje:\n${description}`,
+        `Fecha: ${submittedAt}`,
+        "Origen: HEBARO.com",
+      ].join("\n\n"),
+    });
+    if (error || !sent?.id) {
+      console.error("Consultation email provider did not accept the request");
+      return errorResponse("No pudimos enviar tu solicitud. Inténtalo nuevamente.", 502);
     }
-    return errorResponse("No pudimos enviar tu solicitud ahora. Intenta de nuevo más tarde.", 502);
+    return NextResponse.json({ ok: true }, { status: 201 });
+  } catch {
+    console.error("Consultation submission failed during lead storage or email delivery");
+    return errorResponse("No pudimos enviar tu solicitud. Inténtalo nuevamente.", 502);
   }
 }

@@ -2,7 +2,7 @@
 
 import { ArrowRight, Check, LoaderCircle } from "lucide-react";
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 import { HERA_SERVICES } from "@/lib/hera/types";
 
 type ConsultationFields = {
@@ -13,6 +13,7 @@ type ConsultationFields = {
   serviceInterest: string;
   description: string;
   consent: boolean;
+  website: string;
 };
 
 const EMPTY_FORM: ConsultationFields = {
@@ -23,12 +24,14 @@ const EMPTY_FORM: ConsultationFields = {
   serviceInterest: "",
   description: "",
   consent: false,
+  website: "",
 };
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const PHONE_PATTERN = /^[+\d().\s-]+$/;
 
 export default function ConsultationForm() {
+  const submitting = useRef(false);
   const [submitted, setSubmitted] = useState(false);
   const [fields, setFields] = useState(EMPTY_FORM);
   const [attempted, setAttempted] = useState(false);
@@ -41,6 +44,7 @@ export default function ConsultationForm() {
 
   async function submitConsultation(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submitting.current) return;
     setAttempted(true);
     setSubmitError("");
 
@@ -53,6 +57,7 @@ export default function ConsultationForm() {
     if (!name || !description || (!email && !phone) || (email && !EMAIL_PATTERN.test(email))
       || (phone && (!PHONE_PATTERN.test(phone) || phoneDigits.length < 7)) || !fields.consent) return;
 
+    submitting.current = true;
     setIsSubmitting(true);
     try {
       const response = await fetch("/api/consultations", {
@@ -66,14 +71,16 @@ export default function ConsultationForm() {
           service_interest: fields.serviceInterest === "No estoy seguro" ? null : fields.serviceInterest || null,
           description,
           consent: fields.consent,
+          website: fields.website,
         }),
       });
       const result = await response.json().catch(() => null) as { error?: string } | null;
-      if (!response.ok) throw new Error(result?.error || "No pudimos enviar tu solicitud ahora.");
+      if (!response.ok || !(result as { ok?: boolean } | null)?.ok) throw new Error(result?.error || "No pudimos enviar tu solicitud ahora.");
       setSubmitted(true);
-    } catch (error) {
-      setSubmitError(error instanceof Error ? error.message : "No pudimos enviar tu solicitud ahora.");
+    } catch {
+      setSubmitError("No pudimos enviar tu solicitud. Inténtalo nuevamente.");
     } finally {
+      submitting.current = false;
       setIsSubmitting(false);
     }
   }
@@ -91,6 +98,9 @@ export default function ConsultationForm() {
 
   return (
     <form className="consultation-form" onSubmit={submitConsultation} noValidate>
+      <div hidden aria-hidden="true">
+        <label>Sitio web<input name="website" autoComplete="off" tabIndex={-1} value={fields.website} onChange={(event) => updateField("website", event.target.value)} /></label>
+      </div>
       <div className="consultation-fields">
         <label>Nombre <span>*</span>
           <input autoComplete="name" value={fields.name} maxLength={120} onChange={(event) => updateField("name", event.target.value)} />

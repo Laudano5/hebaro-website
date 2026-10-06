@@ -53,7 +53,7 @@ export function SiteHeader() {
       </nav>
       <div className="header-actions">
         <button className="search-button" aria-label="Buscar" type="button"><Search size={20} /></button>
-        <a className="login-button" href="/contacto">Iniciar sesión</a>
+        <a className="login-button" href="/contacto">Contáctanos</a>
         <button
           className="menu-button"
           aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
@@ -68,7 +68,7 @@ export function SiteHeader() {
       {menuOpen && (
         <nav className="mobile-nav" id="mobile-navigation" aria-label="Navegación móvil">
           {links.map(([label, href]) => <a href={href} key={href} aria-current={pathname === href ? "page" : undefined} onClick={() => setMenuOpen(false)}>{label}</a>)}
-          <a className="mobile-login" href="/contacto" onClick={() => setMenuOpen(false)}>Iniciar sesión</a>
+          <a className="mobile-login" href="/contacto" onClick={() => setMenuOpen(false)}>Contáctanos</a>
         </nav>
       )}
     </header>
