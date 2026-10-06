@@ -126,6 +126,7 @@
 
 .footer-contact {
   display: flex !important;
+  flex-wrap: wrap;
   align-items: center !important;
   gap: 14px !important;
 }

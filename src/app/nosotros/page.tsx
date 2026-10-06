@@ -96,7 +96,7 @@ export default function AboutPage() {
           </div>
         </section>
       </main>
-      <SiteFooter businessIdentity="Service-Disabled Veteran-Owned Small Business" />
+      <SiteFooter businessIdentity="Service-Disabled Veteran-Owned Small Business (SDVOSB)" />
       <HeraWidget />
     </>
   );

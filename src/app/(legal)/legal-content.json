@@ -1,0 +1,638 @@
+{
+  "terms": [
+    {
+      "heading": "1. Aceptación",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Bienvenido a HEBARO.com (el “Sitio”), sitio corporativo operado por HEBARO LLC (“HEBARO”, “nosotros”, “nuestro” o “nos”)."
+        },
+        {
+          "type": "paragraph",
+          "text": "Al acceder, navegar o utilizar este Sitio, usted reconoce haber leído y acepta estos Términos y Condiciones de Uso (“Términos”). Si no está de acuerdo con ellos, deberá abstenerse de utilizar el Sitio."
+        }
+      ]
+    },
+    {
+      "heading": "2. Sobre HEBARO",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "HEBARO LLC es una empresa de tecnología que desarrolla y ofrece soluciones que pueden incluir, entre otras:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "inteligencia artificial y automatización;",
+            "desarrollo de software personalizado;",
+            "integración de sistemas;",
+            "soluciones y experiencias digitales;",
+            "consultoría tecnológica;",
+            "capacitación y desarrollo de destrezas; y",
+            "plataformas y productos tecnológicos propios."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "La información presentada en HEBARO.com tiene fines corporativos, informativos y comerciales."
+        }
+      ]
+    },
+    {
+      "heading": "3. Solicitudes de consulta",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "HEBARO.com permite a personas, empresas y organizaciones solicitar información, reuniones o consultas relacionadas con nuestros servicios."
+        },
+        {
+          "type": "paragraph",
+          "text": "El envío de una solicitud:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "no constituye una oferta o aceptación contractual;",
+            "no obliga a HEBARO a aceptar un proyecto;",
+            "no garantiza disponibilidad, precio, alcance, resultado o fecha de entrega;",
+            "no crea por sí solo una relación cliente-proveedor, fiduciaria, profesional o contractual; y",
+            "no sustituye una propuesta, contrato, Statement of Work (“SOW”), orden de trabajo u otro acuerdo escrito."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Cualquier servicio contratado podrá estar sujeto a términos, precios, alcance, responsabilidades y condiciones adicionales establecidos mediante acuerdos separados."
+        }
+      ]
+    },
+    {
+      "heading": "4. Información confidencial y solicitudes",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "El envío de información mediante formularios generales, correo electrónico u otros mecanismos disponibles en HEBARO.com no crea por sí solo una obligación de confidencialidad ni un acuerdo de no divulgación (NDA) entre el usuario y HEBARO."
+        },
+        {
+          "type": "paragraph",
+          "text": "No deberá enviar mediante estos mecanismos generales:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "contraseñas o credenciales;",
+            "números completos de tarjetas de pago;",
+            "información clasificada;",
+            "secretos comerciales que requieran protección contractual previa;",
+            "datos personales altamente sensibles; o",
+            "cualquier información que requiera medidas especiales de seguridad."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Cuando un proyecto requiera intercambio de información confidencial, las partes podrán establecer las protecciones correspondientes mediante un acuerdo escrito."
+        }
+      ]
+    },
+    {
+      "heading": "5. Información proporcionada por el usuario",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Al proporcionar información a HEBARO, usted declara que tiene derecho o autorización para proporcionarla y que, según su conocimiento, no es deliberadamente falsa, fraudulenta o ilícita."
+        },
+        {
+          "type": "paragraph",
+          "text": "El usuario conserva los derechos que legalmente le correspondan sobre su información, ideas y materiales."
+        },
+        {
+          "type": "paragraph",
+          "text": "El mero envío de una idea, necesidad o concepto no otorga al usuario derechos sobre tecnologías, metodologías, productos o soluciones desarrolladas independientemente por HEBARO ni impide que HEBARO trabaje en proyectos similares para otros clientes."
+        },
+        {
+          "type": "paragraph",
+          "text": "Nada en esta disposición transfiere a HEBARO la propiedad de la propiedad intelectual preexistente del usuario."
+        }
+      ]
+    },
+    {
+      "heading": "6. Propiedad intelectual de HEBARO",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Salvo que se indique expresamente lo contrario, HEBARO LLC o sus licenciantes conservan los derechos correspondientes sobre el Sitio y sus elementos, incluyendo:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "marcas y logotipos;",
+            "identidad visual;",
+            "textos y gráficos;",
+            "fotografías y material audiovisual;",
+            "interfaces;",
+            "software;",
+            "diseños;",
+            "metodologías;",
+            "componentes tecnológicos; y",
+            "demás contenido creado o utilizado legítimamente por HEBARO."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "El acceso al Sitio no concede al usuario una licencia comercial ni derecho para copiar, distribuir, vender, sublicenciar, modificar o explotar dichos elementos salvo autorización expresa o según lo permita la ley."
+        },
+        {
+          "type": "paragraph",
+          "text": "Las marcas y materiales pertenecientes a terceros continúan siendo propiedad de sus respectivos titulares."
+        }
+      ]
+    },
+    {
+      "heading": "7. Productos y plataformas de HEBARO",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "HEBARO puede desarrollar, operar o promover productos, plataformas y marcas adicionales, incluyendo HEBARO Marketplace y ArtesenPR."
+        },
+        {
+          "type": "paragraph",
+          "text": "Estos productos o plataformas pueden estar sujetos a sus propios:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "términos y condiciones;",
+            "políticas de privacidad;",
+            "requisitos de elegibilidad;",
+            "reglas comerciales; y",
+            "acuerdos con usuarios o vendedores."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Los presentes Términos regulan principalmente el uso del sitio corporativo HEBARO.com y no sustituyen términos específicos aplicables a otras plataformas."
+        },
+        {
+          "type": "paragraph",
+          "text": "Cuando exista un conflicto relacionado específicamente con una plataforma, prevalecerán sus términos específicos en la medida permitida por ley."
+        }
+      ]
+    },
+    {
+      "heading": "8. Inteligencia artificial y automatización",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "HEBARO puede utilizar o desarrollar tecnologías de inteligencia artificial, automatización y sistemas algorítmicos."
+        },
+        {
+          "type": "paragraph",
+          "text": "Salvo que un contrato escrito disponga expresamente lo contrario:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "los resultados producidos o asistidos por sistemas automatizados pueden contener errores o limitaciones;",
+            "determinados resultados pueden requerir revisión humana;",
+            "demostraciones o ejemplos del Sitio no garantizan resultados idénticos en producción; y",
+            "la utilización de una tecnología no garantiza un resultado comercial específico."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Las obligaciones específicas relacionadas con soluciones de IA desarrolladas para clientes se establecerán, cuando corresponda, en el contrato o SOW aplicable."
+        }
+      ]
+    },
+    {
+      "heading": "9. No garantía de resultados comerciales",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "HEBARO no garantiza mediante este Sitio que el uso de tecnología, automatización, software, capacitación, consultoría o inteligencia artificial producirá necesariamente:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "aumentos de ventas o ingresos;",
+            "reducciones específicas de costos;",
+            "determinada productividad;",
+            "resultados financieros;",
+            "crecimiento comercial; o",
+            "cualquier otro resultado cuantificable."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Cualquier compromiso específico deberá constar expresamente en un acuerdo escrito aplicable al servicio contratado."
+        }
+      ]
+    },
+    {
+      "heading": "10. No constituye asesoramiento especializado",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "El contenido general de HEBARO.com no constituye asesoramiento legal, fiscal, financiero, médico, contable ni otro asesoramiento profesional regulado."
+        },
+        {
+          "type": "paragraph",
+          "text": "Las organizaciones deberán obtener asesoramiento especializado independiente cuando las circunstancias lo requieran."
+        }
+      ]
+    },
+    {
+      "heading": "11. Servicios y plataformas de terceros",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "HEBARO puede utilizar o integrar tecnologías, APIs, infraestructura, servicios cloud, procesadores de pago, modelos de inteligencia artificial y otras herramientas suministradas por terceros."
+        },
+        {
+          "type": "paragraph",
+          "text": "Dichos servicios pueden:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "experimentar interrupciones;",
+            "modificar funcionalidades;",
+            "cambiar precios o condiciones;",
+            "limitar APIs;",
+            "sufrir incidentes; o",
+            "discontinuar productos."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "HEBARO no controla las decisiones independientes de dichos proveedores y no garantiza su disponibilidad permanente."
+        },
+        {
+          "type": "paragraph",
+          "text": "Cuando corresponda, el uso de servicios de terceros estará sujeto además a los términos establecidos por sus respectivos proveedores."
+        }
+      ]
+    },
+    {
+      "heading": "12. Enlaces externos",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "HEBARO.com puede incluir enlaces a sitios o plataformas externos."
+        },
+        {
+          "type": "paragraph",
+          "text": "HEBARO no controla necesariamente el contenido, seguridad, disponibilidad, políticas o prácticas de terceros independientes y no será responsable por ellos excepto en la medida exigida por ley."
+        }
+      ]
+    },
+    {
+      "heading": "13. Disponibilidad del Sitio",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "HEBARO procura mantener el Sitio disponible y seguro, pero no garantiza funcionamiento continuo, ininterrumpido o libre de errores."
+        },
+        {
+          "type": "paragraph",
+          "text": "HEBARO podrá modificar, actualizar, limitar o suspender funcionalidades cuando resulte razonablemente necesario por mantenimiento, seguridad, desarrollo, cumplimiento legal u operaciones comerciales."
+        }
+      ]
+    },
+    {
+      "heading": "14. Seguridad y uso prohibido",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Queda prohibido utilizar HEBARO.com para:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "actividades ilegales o fraudulentas;",
+            "acceso no autorizado;",
+            "introducción de malware o código malicioso;",
+            "interferencia con sistemas o infraestructura;",
+            "suplantación de identidad;",
+            "explotación de vulnerabilidades;",
+            "ataques de denegación de servicio;",
+            "extracción automatizada abusiva;",
+            "evasión de mecanismos de seguridad;",
+            "escaneo, pruebas de penetración o explotación sin autorización escrita; o",
+            "infracción de propiedad intelectual u otros derechos."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "HEBARO podrá restringir o bloquear acceso cuando razonablemente detecte abuso, riesgo de seguridad o incumplimiento de estos Términos."
+        }
+      ]
+    },
+    {
+      "heading": "15. Exactitud de la información",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "HEBARO procura mantener información correcta y actualizada, pero el Sitio puede contener errores, omisiones o información posteriormente modificada."
+        },
+        {
+          "type": "paragraph",
+          "text": "La información publicada no constituye por sí sola una garantía contractual respecto a características, precios, disponibilidad, plazos o resultados."
+        }
+      ]
+    },
+    {
+      "heading": "16. Limitación de responsabilidad",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "En la máxima medida permitida por la legislación aplicable, HEBARO LLC no será responsable por daños indirectos, incidentales, especiales, ejemplares o consecuenciales, pérdida de oportunidades, beneficios o datos derivados únicamente del acceso, imposibilidad de acceso o utilización del Sitio."
+        },
+        {
+          "type": "paragraph",
+          "text": "Nada en estos Términos pretende excluir responsabilidad que legalmente no pueda excluirse o limitarse."
+        },
+        {
+          "type": "paragraph",
+          "text": "Las limitaciones correspondientes a servicios profesionales contratados podrán establecerse separadamente en el contrato, propuesta o SOW aplicable."
+        }
+      ]
+    },
+    {
+      "heading": "17. Indemnización",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "En la medida permitida por ley, el usuario acepta responder por reclamaciones, pérdidas y gastos razonables que resulten directamente de:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "su utilización ilícita del Sitio;",
+            "una violación material de estos Términos; o",
+            "una infracción de derechos de terceros atribuible a materiales o conductas del usuario."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "18. Fuerza mayor",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "HEBARO no será responsable por retrasos o incumplimientos causados por circunstancias fuera de su control razonable, incluyendo interrupciones generales de telecomunicaciones o infraestructura, fallas significativas de proveedores externos, desastres naturales, emergencias, actos gubernamentales u otros eventos de fuerza mayor, en la medida permitida por ley."
+        }
+      ]
+    },
+    {
+      "heading": "19. Privacidad",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "El tratamiento de información personal recopilada mediante HEBARO.com se describe en nuestra Política de Privacidad."
+        }
+      ]
+    },
+    {
+      "heading": "20. Modificaciones",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "HEBARO podrá actualizar estos Términos para reflejar cambios legales, tecnológicos, operacionales o comerciales."
+        },
+        {
+          "type": "paragraph",
+          "text": "La versión vigente se publicará en HEBARO.com indicando su fecha de actualización."
+        }
+      ]
+    },
+    {
+      "heading": "21. No renuncia",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "El hecho de que HEBARO no ejerza inmediatamente un derecho contemplado en estos Términos no constituirá una renuncia permanente a dicho derecho."
+        }
+      ]
+    },
+    {
+      "heading": "22. Divisibilidad",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Si alguna disposición es declarada inválida o inaplicable, las demás disposiciones continuarán vigentes en la máxima medida permitida por ley."
+        }
+      ]
+    },
+    {
+      "heading": "23. Legislación aplicable",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Estos Términos se interpretarán conforme a las leyes aplicables del Estado Libre Asociado de Puerto Rico y, cuando corresponda, las leyes federales de los Estados Unidos."
+        },
+        {
+          "type": "paragraph",
+          "text": "Las controversias estarán sujetas a los tribunales con jurisdicción competente en Puerto Rico, salvo que una disposición legal obligatoria establezca otro foro."
+        }
+      ]
+    },
+    {
+      "heading": "24. Contacto",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "HEBARO LLC Puerto Rico Email: info@hebaro.com Teléfono: (939) 938-8323"
+        }
+      ]
+    }
+  ],
+  "privacy": [
+    {
+      "heading": "1. Introducción",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "HEBARO LLC (“HEBARO”, “nosotros”, “nuestro” o “nos”) respeta la privacidad de las personas que visitan HEBARO.com y se comunican con nosotros."
+        },
+        {
+          "type": "paragraph",
+          "text": "Esta Política de Privacidad describe qué información podemos recopilar mediante el sitio corporativo HEBARO.com, cómo podemos utilizarla y las circunstancias en que puede ser procesada o compartida."
+        },
+        {
+          "type": "paragraph",
+          "text": "Esta Política aplica principalmente a HEBARO.com."
+        },
+        {
+          "type": "paragraph",
+          "text": "HEBARO Marketplace, ArtesenPR y otros productos o plataformas de HEBARO pueden tener políticas adicionales o independientes."
+        }
+      ]
+    },
+    {
+      "heading": "2. Información que podemos recopilar",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Dependiendo de la interacción del usuario, podemos recopilar información proporcionada voluntariamente, incluyendo:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "nombre;",
+            "empresa u organización;",
+            "correo electrónico;",
+            "número de teléfono;",
+            "área de interés;",
+            "descripción de una necesidad, proyecto o consulta;",
+            "comunicaciones posteriores; y",
+            "otra información voluntariamente proporcionada."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "También podemos procesar información técnica necesaria o relacionada con la operación del Sitio, como:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "dirección IP;",
+            "navegador;",
+            "tipo de dispositivo;",
+            "páginas solicitadas;",
+            "fecha y hora;",
+            "registros técnicos;",
+            "datos de seguridad y diagnóstico; y",
+            "información necesaria para prevenir abuso o mantener la disponibilidad del Sitio."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "3. Cómo utilizamos la información",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "HEBARO puede utilizar información para:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "recibir y responder consultas;",
+            "comunicarse con prospectos, clientes y organizaciones;",
+            "evaluar proyectos;",
+            "coordinar reuniones;",
+            "preparar propuestas;",
+            "proporcionar servicios solicitados;",
+            "administrar el Sitio;",
+            "mejorar nuestros servicios y procesos;",
+            "mantener seguridad;",
+            "prevenir fraude o abuso;",
+            "diagnosticar problemas técnicos;",
+            "cumplir obligaciones legales; y",
+            "proteger los derechos y seguridad de HEBARO, nuestros usuarios y terceros."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "4. Solicitudes de consulta",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Cuando una persona utiliza el formulario de consulta, HEBARO puede utilizar los datos proporcionados para revisar la solicitud y comunicarse con dicha persona."
+        },
+        {
+          "type": "paragraph",
+          "text": "El envío del formulario autoriza a HEBARO a realizar un seguimiento razonable relacionado con la consulta."
+        },
+        {
+          "type": "paragraph",
+          "text": "El envío de una consulta no constituye por sí solo consentimiento para recibir campañas promocionales no relacionadas cuando la legislación aplicable requiera consentimiento adicional."
+        }
+      ]
+    },
+    {
+      "heading": "5. Información confidencial y sensible",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "El formulario corporativo de HEBARO no está diseñado para recibir:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "contraseñas;",
+            "credenciales;",
+            "números completos de tarjetas;",
+            "información clasificada;",
+            "datos médicos sensibles;",
+            "secretos comerciales que requieran protección contractual previa; u",
+            "otra información altamente sensible."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Cuando un proyecto requiera intercambio de información confidencial, podrán establecerse mecanismos apropiados mediante acuerdo escrito."
+        }
+      ]
+    },
+    {
+      "heading": "6. Proveedores de servicios",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "HEBARO puede utilizar proveedores tecnológicos que procesen información en nuestro nombre para funciones como:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "alojamiento;",
+            "infraestructura cloud;",
+            "bases de datos;",
+            "correo electrónico;",
+            "comunicaciones;",
+            "seguridad;",
+            "monitoreo;",
+            "analítica; y",
+            "operación de servicios digitales."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Estos proveedores podrán procesar información en la medida necesaria para prestar sus servicios y conforme a las condiciones y obligaciones que les sean aplicables."
+        }
+      ]
+    },
+    {
+      "heading": "7. Venta de información personal",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "HEBARO no vende información personal recopilada mediante HEBARO.com a terceros a cambio de dinero."
+        },
+        {
+          "type": "paragraph",
+          "text": "HEBARO tampoco alquila listas de prospectos obtenidas mediante el formulario corporativo."
+        }
+      ]
+    },
+    {
+      "heading": "8. Divulgación de información",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "HEBARO puede divulgar información cuando sea razonablemente necesario:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "para operar el Sitio mediante proveedores autorizados;",
+            "a solicitud o con consentimiento del usuario;",
+            "para cumplir una ley, orden judicial o requerimiento legal válido;",
+            "para investigar fraude"
+          ]
+        }
+      ]
+    }
+  ]
+}

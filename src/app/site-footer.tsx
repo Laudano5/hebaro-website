@@ -1,4 +1,4 @@
-export default function SiteFooter({ businessIdentity = "Veteran-Owned & Disabled-Owned Business" }: { businessIdentity?: string }) {
+export default function SiteFooter({ businessIdentity = "Service-Disabled Veteran-Owned Small Business (SDVOSB)" }: { businessIdentity?: string }) {
   return (
     <footer className="footer">
       <div className="footer-bottom">
@@ -11,9 +11,11 @@ export default function SiteFooter({ businessIdentity = "Veteran-Owned & Disable
           <div className="footer-contact">
             <a href="mailto:info@hebaro.com">info@hebaro.com</a>
             <span>•</span>
-            <a href="tel:+19393662981">(939) 366-2981</a>
+            <a href="tel:+19399388323">(939) 938-8323</a>
             <span>•</span>
             <a href="/terminos">Términos y Condiciones</a>
+            <span>•</span>
+            <a href="/privacidad">Política de Privacidad</a>
           </div>
         </div>
 

@@ -150,7 +150,7 @@ export default function ConsultationForm() {
       {attempted && !fields.email.trim() && !fields.phone.trim() && <p className="consultation-error" role="alert">Incluye un email o teléfono para poder contactarte.</p>}
       <label className="consultation-consent">
         <input type="checkbox" checked={fields.consent} onChange={(event) => updateField("consent", event.target.checked)} />
-        <span>Al enviar esta solicitud, autorizas a HEBARO a comunicarse contigo sobre tu consulta.</span>
+        <span>Al enviar esta solicitud, autorizas a HEBARO a comunicarse contigo sobre tu consulta y reconoces nuestra <Link href="/privacidad" className="consultation-privacy-link">Política de Privacidad</Link>.</span>
       </label>
       {attempted && !fields.consent && <p className="consultation-error" role="alert">Confirma el consentimiento para continuar.</p>}
       {submitError && <p className="consultation-error" role="alert">{submitError}</p>}
