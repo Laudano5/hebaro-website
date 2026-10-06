@@ -68,7 +68,7 @@ export default function AboutPage() {
                 <PathDiagram variant="marketplace" /><h3>Conecta con oportunidades.</h3>
                 <p>Un espacio digital para conectar productos, servicios, talento y negocios.</p>
                 <ul className="about-capabilities">{([[Eye, "Visibilidad para tu negocio"], [Users, "Conexiones con clientes y aliados"], [Handshake, "Oportunidades de colaboración"], [TrendingUp, "Crecimiento de Puerto Rico"]] as const).map(([Icon, label]) => <li key={label}><Icon size={18} aria-hidden="true" />{label}</li>)}</ul>
-                <a href="https://hebaro.com/marketplace">Entrar al Marketplace <ArrowRight size={17} /></a>
+                <a href="https://marketplace.hebaro.com">Entrar al Marketplace <ArrowRight size={17} /></a>
               </article>
             </div>
           </div>

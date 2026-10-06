@@ -7,7 +7,7 @@ import HeraWidget from "./hera-widget";
 import { ConsultationLink } from "./internal-page-components";
 import styles from "./home.module.css";
 
-const marketplaceUrl = "https://hebaro.com/marketplace/resultado/";
+const marketplaceUrl = "https://marketplace.hebaro.com/marketplace/resultado/";
 const capabilities = [
   { icon: BrainCircuit, title: "IA y Automatización", text: "Ahorra tiempo, reduce costos\ny aumenta tu productividad." },
   { icon: CodeXml, title: "Software Personalizado", text: "Plataformas a la medida,\nsin limitarte a las existentes." },
