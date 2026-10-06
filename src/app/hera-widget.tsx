@@ -4,6 +4,7 @@ import Image from "next/image";
 import { FormEvent, KeyboardEvent, useEffect, useMemo, useRef, useState } from "react";
 import { ArrowRight, Check, CircleHelp, Code2, GraduationCap, LoaderCircle, Network, Send, Workflow, X } from "lucide-react";
 import { createLeadSubmission } from "@/lib/hera/lead-extraction";
+import { HERA_LEAD_FAILURE_MESSAGE, submitHeraLead } from "@/lib/hera/submit-lead";
 import { HERA_SERVICES, type HeraService, type HeraTurn } from "@/lib/hera/types";
 
 const HERA_AVATAR = "/public/images/hera-avatar.png.png";
@@ -55,6 +56,8 @@ export default function HeraWidget() {
   const nameRef = useRef<HTMLInputElement>(null);
   const conversationRef = useRef<HTMLDivElement>(null);
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const submittingRef = useRef(false);
+  const submitErrorRef = useRef<HTMLDivElement>(null);
 
   const visitorTurns = useMemo(() => turns.filter((turn) => turn.role === "user"), [turns]);
   const hasContactMethod = Boolean(
@@ -76,6 +79,13 @@ export default function HeraWidget() {
   useEffect(() => {
     if (mode === "lead") nameRef.current?.focus();
   }, [mode]);
+
+  useEffect(() => {
+    if (submitError && mode === "lead") {
+      submitErrorRef.current?.focus();
+      submitErrorRef.current?.scrollIntoView({ block: "nearest" });
+    }
+  }, [submitError, mode]);
 
   useEffect(() => () => {
     if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
@@ -151,10 +161,12 @@ export default function HeraWidget() {
 
   async function submitLead(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submittingRef.current) return;
     setContactValidation(true);
     setSubmitError("");
     if (!hasContactMethod || !lead.name.trim() || !lead.consent) return;
 
+    submittingRef.current = true;
     setSubmitting(true);
     try {
       const leadData = createLeadSubmission({
@@ -165,20 +177,17 @@ export default function HeraWidget() {
         email: lead.email,
         phone: lead.phone,
       });
-      const response = await fetch("/api/hera/leads", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...leadData, consent: lead.consent, website: lead.website }),
+      const standalone = window.matchMedia("(display-mode: standalone)").matches
+        || (navigator as Navigator & { standalone?: boolean }).standalone === true;
+      await submitHeraLead({
+        ...leadData, consent: lead.consent, website: lead.website,
+        submission_context: standalone ? "standalone" : "browser",
       });
-
-      if (!response.ok) {
-        const payload = await response.json().catch(() => null) as { error?: string } | null;
-        throw new Error(payload?.error || "No pudimos enviar tu solicitud ahora.");
-      }
       setMode("sent");
-    } catch (error) {
-      setSubmitError(error instanceof Error ? error.message : "No pudimos enviar tu solicitud ahora.");
+    } catch {
+      setSubmitError(HERA_LEAD_FAILURE_MESSAGE);
     } finally {
+      submittingRef.current = false;
       setSubmitting(false);
     }
   }
@@ -294,7 +303,7 @@ export default function HeraWidget() {
           )}
 
           {mode === "lead" && (
-            <form className="hera-lead-form" onSubmit={submitLead} noValidate>
+            <form className="hera-lead-form" onSubmit={submitLead} aria-busy={submitting} noValidate>
               <div className="hera-lead-scroll">
                 <div className="hera-honeypot" aria-hidden="true">
                   <label>Website<input name="website" tabIndex={-1} autoComplete="off" value={lead.website} onChange={(event) => setLead((current) => ({ ...current, website: event.target.value }))} /></label>
@@ -327,11 +336,14 @@ export default function HeraWidget() {
                   <span>Al enviar tu información, autorizas a HEBARO a utilizar estos datos para comunicarse contigo sobre tu solicitud. <a href="/politica-de-privacidad">Política de privacidad</a>.</span>
                 </label>
                 {contactValidation && !lead.consent && <p className="hera-field-error">Confirma el consentimiento para continuar.</p>}
-                {submitError && <p className="hera-submit-error" role="alert">{submitError}</p>}
+                {submitError && <div className="hera-submit-error" role="alert" tabIndex={-1} ref={submitErrorRef}>
+                  <p>{submitError}</p>
+                  <a href="/consulta">Ir al formulario de contacto</a>
+                </div>}
               </div>
               <div className="hera-form-footer">
                 <button className="hera-submit" type="submit" disabled={submitting || !lead.name.trim() || !hasContactMethod || !lead.consent}>
-                  {submitting ? <><LoaderCircle size={17} className="hera-spinner"/> Enviando…</> : <>Enviar solicitud<ArrowRight size={17}/></>}
+                  {submitting ? <><LoaderCircle size={17} className="hera-spinner"/> Enviando solicitud...</> : <>Enviar solicitud<ArrowRight size={17}/></>}
                 </button>
                 <p>Solo usaremos estos datos para responder a tu solicitud.</p>
               </div>
@@ -342,7 +354,7 @@ export default function HeraWidget() {
             <div className="hera-success" role="status">
               <span className="hera-success-icon"><Check size={25} /></span>
               <h3>Solicitud enviada</h3>
-              <p>Gracias por compartir tu proyecto. El equipo de HEBARO recibió tu solicitud.</p>
+              <p>¡Listo! Recibimos tu solicitud. Nuestro equipo se comunicará contigo.</p>
               <button type="button" onClick={closePanel}>Cerrar</button>
             </div>
           )}

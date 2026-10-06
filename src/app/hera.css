@@ -598,6 +598,9 @@
   line-height: 1.5;
 }
 
+.hera-submit-error p { margin: 0 0 8px; }
+.hera-submit-error a { text-decoration: underline; text-underline-offset: 3px; }
+
 .hera-consent {
   display: flex;
   align-items: flex-start;

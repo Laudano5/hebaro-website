@@ -1,10 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
+import { randomUUID } from "node:crypto";
 import { HERA_SERVICES, type HeraLeadSubmission, type HeraService } from "@/lib/hera/types";
 import { checkLeadRateLimit } from "@/lib/hera/rate-limit";
 import { generateHeraLeadSummary, type HeraLeadSummary } from "@/lib/hera/openai";
-import { insertHeraLead } from "@/lib/hera/supabase-leads";
+import { HeraStorageError, insertHeraLead, type PersistedHeraLead } from "@/lib/hera/supabase-leads";
+import { HeraEmailError, sendHeraLeadEmail } from "@/lib/hera/lead-email";
 
 export const runtime = "nodejs";
+export const maxDuration = 60;
 
 const MAX_BODY_BYTES = 200_000;
 const CONTROL_CHARACTERS = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g;
@@ -18,14 +21,18 @@ function cleanText(value: unknown, maxLength: number): string | null {
 
 function optionalText(value: unknown, maxLength: number): string | null | undefined {
   if (value === undefined || value === null || value === "") return null;
-  return cleanText(value, maxLength);
-}
-
-function jsonError(message: string, status: number, headers?: HeadersInit) {
-  return NextResponse.json({ error: message }, { status, headers });
+  return cleanText(value, maxLength) ?? undefined;
 }
 
 export async function POST(request: NextRequest) {
+  const requestId = randomUUID();
+  let submissionContext = "unknown";
+  const context = () => ({ requestId, source: "HERA", submissionContext });
+  console.info("HERA_LEAD_REQUEST_RECEIVED", context());
+  function jsonError(message: string, status: number, headers?: HeadersInit) {
+    if (status < 500) console.warn("HERA_LEAD_VALIDATION_FAILED", { ...context(), status });
+    return NextResponse.json({ error: message }, { status, headers: { ...headers, "Cache-Control": "no-store" } });
+  }
   const contentLength = Number(request.headers.get("content-length") ?? 0);
   if (contentLength > MAX_BODY_BYTES) return jsonError("La solicitud es demasiado grande.", 413);
 
@@ -45,8 +52,12 @@ export async function POST(request: NextRequest) {
   }
 
   const data = body as Record<string, unknown>;
-  if (typeof data.website === "string" && data.website.trim()) {
-    return NextResponse.json({ ok: true }, { status: 201 });
+  if (data.submission_context !== undefined && data.submission_context !== "standalone" && data.submission_context !== "browser") {
+    return jsonError("La solicitud no es válida.", 400);
+  }
+  submissionContext = typeof data.submission_context === "string" ? data.submission_context : "unknown";
+  if (data.website !== undefined && (typeof data.website !== "string" || data.website.trim())) {
+    return jsonError("La solicitud no es válida.", 400);
   }
 
   const clientKey = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim()
@@ -88,7 +99,7 @@ export async function POST(request: NextRequest) {
   if (currentProcess === undefined || requirements === undefined) {
     return jsonError("Uno de los detalles del proyecto supera el límite permitido.", 400);
   }
-  if (!cleanVisitorMessages?.length || !conversationSummary || conversationSummary.length > 48_000) {
+  if (!cleanVisitorMessages?.length || visitorMessages?.some(message => !message) || !conversationSummary || conversationSummary.length > 48_000) {
     return jsonError("Comparte primero un poco de contexto sobre tu proyecto.", 400);
   }
   if (data.consent !== true) return jsonError("Confirma el consentimiento antes de enviar.", 400);
@@ -98,6 +109,7 @@ export async function POST(request: NextRequest) {
     aiSummary = await generateHeraLeadSummary(cleanVisitorMessages);
   } catch {
     // Lead persistence must still work if the optional summary call is unavailable.
+    console.warn("HERA_SUMMARY_UNAVAILABLE", context());
   }
 
   const fallbackSummary = cleanVisitorMessages.map((message, index) => `VISITOR ${index + 1}: ${message}`).join("\n\n").slice(0, 12_000);
@@ -123,17 +135,16 @@ export async function POST(request: NextRequest) {
     company,
     email,
     phone,
-    service_interest: aiSummary?.serviceInterests[0] ?? null,
+    service_interest: aiSummary?.serviceInterests[0] ?? serviceInterest,
     problem_summary: (aiSummary?.goal || cleanVisitorMessages[0]).slice(0, 2_000),
-    current_process: aiSummary?.currentProcess.slice(0, 1_000) || null,
-    requirements: aiSummary?.requirements.slice(0, 1_000) || null,
+    current_process: aiSummary?.currentProcess.slice(0, 1_000) || currentProcess,
+    requirements: aiSummary?.requirements.slice(0, 1_000) || requirements,
     conversation_summary: formattedSummary.slice(0, 12_000),
     consent: true,
     website: "",
   };
 
-  try {
-    await insertHeraLead({
+  const persistedLead: PersistedHeraLead = {
       name: lead.name,
       company: lead.company,
       email: lead.email,
@@ -146,12 +157,27 @@ export async function POST(request: NextRequest) {
       status: "new",
       source: "HERA",
       consent_at: new Date().toISOString(),
-    });
-    return NextResponse.json({ ok: true }, { status: 201 });
+  };
+  let storageSucceeded = false;
+  try {
+    await insertHeraLead(persistedLead);
+    storageSucceeded = true;
+    console.info("HERA_STORAGE_SUCCESS", context());
   } catch (error) {
-    if (error instanceof Error && error.message === "HERA lead storage is not configured") {
-      return jsonError("El seguimiento de HERA todavía no está configurado. Intenta más tarde.", 503);
-    }
-    return jsonError("No pudimos enviar tu solicitud ahora. Intenta de nuevo más tarde.", 502);
+    console.error("HERA_STORAGE_FAILED", {
+      ...context(),
+      code: error instanceof HeraStorageError ? error.code : "STORAGE_UNEXPECTED_ERROR",
+      status: error instanceof HeraStorageError ? error.status : null,
+    });
+  }
+  try {
+    await sendHeraLeadEmail(persistedLead);
+    console.info("HERA_EMAIL_SUCCESS", context());
+    console.info("HERA_LEAD_COMPLETED", { ...context(), storageSucceeded, degraded: !storageSucceeded });
+    return NextResponse.json({ ok: true }, { status: 201, headers: { "Cache-Control": "no-store" } });
+  } catch (error) {
+    const code = error instanceof HeraEmailError ? error.code : "EMAIL_UNEXPECTED_ERROR";
+    console.error("HERA_EMAIL_FAILED", { ...context(), code, storageSucceeded });
+    return jsonError("No pudimos enviar tu solicitud. Inténtalo nuevamente o utiliza nuestro formulario de contacto.", code === "EMAIL_NOT_CONFIGURED" ? 503 : 502);
   }
 }

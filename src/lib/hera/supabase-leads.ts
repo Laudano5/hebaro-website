@@ -8,74 +8,50 @@ export type PersistedHeraLead = Omit<HeraLeadSubmission, "consent" | "website"> 
   consent_at: string;
 };
 
-type SupabaseErrorPayload = {
-  code?: unknown;
-  message?: unknown;
-  details?: unknown;
-  hint?: unknown;
-};
-
-function safeDiagnostic(value: unknown, privateContactValues: Array<string | null>): string | null {
-  if (typeof value !== "string") return null;
-  let scrubbed = value;
-  for (const privateValue of privateContactValues) {
-    if (privateValue) scrubbed = scrubbed.split(privateValue).join("[redacted]");
+export class HeraStorageError extends Error {
+  constructor(readonly code: string, readonly status: number | null = null) {
+    super(code);
+    this.name = "HeraStorageError";
   }
-  return scrubbed
-    .replace(/[\w.+-]+@[\w.-]+\.[A-Z]{2,}/gi, "[redacted email]")
-    .replace(/(?<!\w)\+?\d[\d\s().-]{5,}\d(?!\w)/g, "[redacted phone]")
-    .slice(0, 500);
 }
 
 /** Server-only Supabase REST insert. The service role key never reaches the browser. */
 export async function insertHeraLead(lead: PersistedHeraLead): Promise<void> {
-  const supabaseUrl = process.env.SUPABASE_URL;
-  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const supabaseUrl = process.env.SUPABASE_URL?.trim();
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
 
   if (!supabaseUrl || !serviceRoleKey) {
-    throw new Error("HERA lead storage is not configured");
+    throw new HeraStorageError("STORAGE_NOT_CONFIGURED");
   }
+
+  const headers: Record<string, string> = {
+    apikey: serviceRoleKey,
+    "Content-Type": "application/json",
+    "Content-Profile": "public",
+    Prefer: "return=minimal",
+  };
+  // Legacy service-role JWTs need Bearer auth; new secret keys use apikey only.
+  if (serviceRoleKey.split(".").length === 3) headers.Authorization = `Bearer ${serviceRoleKey}`;
 
   let response: Response;
   try {
     const endpoint = new URL("/rest/v1/hera_leads", supabaseUrl);
     response = await fetch(endpoint, {
       method: "POST",
-      headers: {
-        apikey: serviceRoleKey,
-        "Content-Type": "application/json",
-        Prefer: "return=minimal",
-      },
+      headers,
       body: JSON.stringify(lead),
       cache: "no-store",
+      signal: AbortSignal.timeout(8_000),
     });
   } catch {
-    console.error("HERA Supabase request failed", {
-      status: null,
-      code: null,
-      message: "No HTTP response received",
-      details: null,
-      hint: null,
-    });
-    throw new Error("HERA lead storage request failed");
+    throw new HeraStorageError("STORAGE_REQUEST_FAILED");
   }
 
   if (!response.ok) {
-    const responseText = await response.text();
-    let errorPayload: SupabaseErrorPayload = {};
-    try {
-      errorPayload = JSON.parse(responseText) as SupabaseErrorPayload;
-    } catch {
-      // Keep the diagnostic allowlist when Supabase returns a non-JSON error.
-    }
-
-    console.error("HERA Supabase request failed", {
-      status: response.status,
-      code: safeDiagnostic(errorPayload.code, [lead.email, lead.phone]),
-      message: safeDiagnostic(errorPayload.message, [lead.email, lead.phone]),
-      details: safeDiagnostic(errorPayload.details, [lead.email, lead.phone]),
-      hint: safeDiagnostic(errorPayload.hint, [lead.email, lead.phone]),
-    });
-    throw new Error("HERA lead storage request failed");
+    const payload = await response.json().catch(() => null) as { code?: unknown } | null;
+    const code = typeof payload?.code === "string" && /^(?:[0-9A-Z]{5}|PGRST[0-9]{3})$/.test(payload.code)
+      ? payload.code : "STORAGE_HTTP_ERROR";
+    // Never include database messages/details: they can echo private lead contents.
+    throw new HeraStorageError(code, response.status);
   }
 }
