@@ -17,7 +17,7 @@ export function Brand({ footer = false, homeHref = "#inicio" }: { footer?: boole
 }
 
 const links = [
-  ["Marketplace", "https://marketplace.hebaro.com"],
+  ["Marketplace", "https://marketplace.hebaro.com/"],
   ["Soluciones", "/soluciones"],
   ["Capacitación", "/capacitacion"],
   ["Nosotros", "/nosotros"],
