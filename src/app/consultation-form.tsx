@@ -54,14 +54,31 @@ export default function ConsultationForm() {
     const phone = fields.phone.trim();
     const description = fields.description.trim();
     const phoneDigits = phone.replace(/\D/g, "");
-    if (!name || !description || (!email && !phone) || (email && !EMAIL_PATTERN.test(email))
-      || (phone && (!PHONE_PATTERN.test(phone) || phoneDigits.length < 7)) || !fields.consent) return;
+    const invalid = !name
+      ? { message: "Escribe tu nombre.", selector: 'input[autocomplete="name"]' }
+      : !description
+        ? { message: "Describe brevemente tu consulta.", selector: "textarea" }
+        : !email && !phone
+          ? { message: "Incluye un email o teléfono para poder contactarte.", selector: 'input[type="email"]' }
+          : email && !EMAIL_PATTERN.test(email)
+            ? { message: "Revisa el email.", selector: 'input[type="email"]' }
+            : phone && (!PHONE_PATTERN.test(phone) || phoneDigits.length < 7)
+              ? { message: "Revisa el teléfono.", selector: 'input[type="tel"]' }
+              : !fields.consent
+                ? { message: "Confirma el consentimiento para continuar.", selector: 'input[type="checkbox"]' }
+                : null;
+    if (invalid) {
+      setSubmitError(invalid.message);
+      event.currentTarget.querySelector<HTMLInputElement | HTMLTextAreaElement>(invalid.selector)?.focus();
+      return;
+    }
 
     submitting.current = true;
     setIsSubmitting(true);
     try {
       const response = await fetch("/api/consultations", {
         method: "POST",
+        signal: AbortSignal.timeout(30_000),
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name,
@@ -74,8 +91,8 @@ export default function ConsultationForm() {
           website: fields.website,
         }),
       });
-      const result = await response.json().catch(() => null) as { error?: string } | null;
-      if (!response.ok || !(result as { ok?: boolean } | null)?.ok) throw new Error(result?.error || "No pudimos enviar tu solicitud ahora.");
+      const result = await response.json().catch(() => null) as { ok?: boolean } | null;
+      if (!response.ok || result?.ok !== true) throw new Error("Consultation submission failed");
       setSubmitted(true);
     } catch {
       setSubmitError("No pudimos enviar tu solicitud. Inténtalo nuevamente.");

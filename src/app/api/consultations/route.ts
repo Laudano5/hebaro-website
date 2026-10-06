@@ -124,6 +124,7 @@ export async function POST(request: NextRequest) {
   </table>
 </body></html>`;
 
+  let submissionStage: "lead storage" | "email delivery" = "lead storage";
   try {
     await insertHeraLead({
       name,
@@ -139,6 +140,7 @@ export async function POST(request: NextRequest) {
       source: "homepage-consultation",
       consent_at: submittedAt,
     });
+    submissionStage = "email delivery";
     const { data: sent, error } = await new Resend(apiKey).emails.send({
       from,
       to,
@@ -153,7 +155,7 @@ export async function POST(request: NextRequest) {
     }
     return NextResponse.json({ ok: true }, { status: 201 });
   } catch {
-    console.error("Consultation submission failed during lead storage or email delivery");
+    console.error(`Consultation submission failed during ${submissionStage}`);
     return errorResponse("No pudimos enviar tu solicitud. Inténtalo nuevamente.", 502);
   }
 }
