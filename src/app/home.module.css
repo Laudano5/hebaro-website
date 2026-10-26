@@ -69,8 +69,8 @@
 .feature:hover { border-color: #d6bf9f88; }
 .featurePhoto { position: relative; aspect-ratio: 1909 / 881; }
 .featurePhoto img { object-fit: cover; object-position: center; }
-.permitVisual { background: #0f1716; }
-.permitVisual img { object-fit: contain; }
+.permitVisual { display: grid; place-items: center; background: linear-gradient(135deg, #183e47, #031f24); color: var(--sand); }
+.permitVisual span { font-size: clamp(32px, 4vw, 56px); font-weight: 700; letter-spacing: -2px; }
 .featureCopy { position: relative; padding: 22px 42px 24px 22px; min-height: 132px; }
 .featureCopy h3 { margin: 0 0 7px; font-size: 23px; font-weight: 700; letter-spacing: -.6px; }
 .featureCopy p { color: #c2d0cf; font-size: 15px; line-height: 1.6; }
