@@ -90,7 +90,7 @@ export default function Home() {
             <div className={styles.marketplaceCards}>
               <a className={styles.feature} href="https://permit.hebaro.com" target="_blank" rel="noopener noreferrer">
                 <div className={`${styles.featurePhoto} ${styles.permitVisual}`}><Image src="/public/images/permit landing page.png" alt="Permit: menos papeles, más control. Permisos, licencias, pólizas y certificados de tu negocio en un solo lugar." fill sizes="(max-width: 700px) 100vw, (max-width: 1100px) 45vw, 28vw" /></div>
-                <div className={styles.featureCopy}><h3>Permit</h3><p>Conoce Permit, parte del ecosistema de HEBARO.</p><ArrowRight size={19} aria-hidden="true" /></div>
+                <div className={styles.featureCopy}><h3>Permit</h3><p>Organiza los permisos, licencias y documentos de tu negocio en un solo lugar.</p><ArrowRight size={19} aria-hidden="true" /></div>
               </a>
               <a className={styles.feature} href="https://www.artesenpr.com" target="_blank" rel="noopener noreferrer">
                 <div className={styles.featurePhoto}><Image src="/public/images/artesenpr card.png" alt="ArtesenPR: artesanías puertorriqueñas hechas a mano." fill quality={90} sizes="(max-width: 700px) 100vw, (max-width: 1100px) 45vw, 28vw" /></div>
