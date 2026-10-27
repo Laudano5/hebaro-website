@@ -89,15 +89,15 @@ export default function Home() {
             </div>
             <div className={styles.marketplaceCards}>
               <a className={styles.feature} href="https://permit.hebaro.com" target="_blank" rel="noopener noreferrer">
-                <div className={`${styles.featurePhoto} ${styles.permitVisual}`}><Image src="/public/images/permit-ecosystem-logo.png" alt="PERMIT" fill sizes="(max-width: 700px) calc(100vw - 40px), (max-width: 1100px) 45vw, 28vw" /></div>
+                <div className={`${styles.featurePhoto} ${styles.permitVisual}`}><Image src="/public/images/permit-ecosystem-logo.png" alt="PERMIT" fill sizes="(max-width: 700px) calc(100vw - 40px), (max-width: 1100px) 46vw, (max-width: 1565px) 31vw, 467px" /></div>
                 <div className={styles.featureCopy}><h3>Permit</h3><p>Organiza los permisos, licencias y documentos de tu negocio en un solo lugar.</p><ArrowRight size={19} aria-hidden="true" /></div>
               </a>
               <a className={styles.feature} href="https://www.artesenpr.com" target="_blank" rel="noopener noreferrer">
-                <div className={styles.featurePhoto}><Image src="/public/images/artesenpr card.png" alt="ArtesenPR: artesanías puertorriqueñas hechas a mano." fill quality={90} sizes="(max-width: 700px) 100vw, (max-width: 1100px) 45vw, 28vw" /></div>
+                <div className={styles.featurePhoto}><Image src="/public/images/artesenpr card.png" alt="ArtesenPR: artesanías puertorriqueñas hechas a mano." fill quality={90} sizes="(max-width: 700px) calc(100vw - 40px), (max-width: 1100px) 46vw, (max-width: 1565px) 31vw, 467px" /></div>
                 <div className={styles.featureCopy}><h3>ArtesenPR</h3><p>Descubre productos de artesanos de Puerto Rico.</p><ArrowRight size={19} aria-hidden="true" /></div>
               </a>
               <a className={styles.feature} href={marketplaceUrl}>
-                <div className={styles.featurePhoto}><Image src="/public/images/marketplace background.jpg" alt="Productos, servicios y negocios del Marketplace HEBARO." fill quality={90} sizes="(max-width: 700px) 100vw, (max-width: 1100px) 45vw, 28vw" /></div>
+                <div className={styles.featurePhoto}><Image src="/public/images/marketplace background.jpg" alt="Productos, servicios y negocios del Marketplace HEBARO." fill quality={90} sizes="(max-width: 700px) calc(100vw - 40px), (max-width: 1100px) 46vw, (max-width: 1565px) 31vw, 467px" /></div>
                 <div className={styles.featureCopy}><h3>HEBARO Marketplace</h3><p>Compra, vende y conecta en un solo lugar.</p><ArrowRight size={19} aria-hidden="true" /></div>
               </a>
             </div>
