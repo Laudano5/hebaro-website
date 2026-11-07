@@ -1,111 +1,72 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { ArrowRight, Compass, HeartHandshake, Lightbulb, Puzzle, Zap, Code2, Workflow, GraduationCap, Eye, Users, Handshake, TrendingUp, Network } from "lucide-react";
+import { ArrowRight, Workflow, Store } from "lucide-react";
 import Link from "next/link";
 import { SiteHeader } from "../site-header";
 import SiteFooter from "../site-footer";
 import HeraWidget from "../hera-widget";
-import { InternalPageHero, SectionHeading, ConsultationLink } from "../internal-page-components";
-
-import { PuertoRicoNetwork, ConnectionMotif, PathDiagram } from "./about-visuals";
+import { InternalPageHero, ConsultationLink } from "../internal-page-components";
+import { PuertoRicoNetwork } from "./about-visuals";
 import "./about.css";
 
 export const metadata: Metadata = {
   title: "Nosotros | HEBARO",
-  description: "Conoce la visión de HEBARO: tecnología con propósito, capacitación y conexiones construidas desde Puerto Rico.",
+  description: "HEBARO LLC: tecnología, automatización y conexiones desde Caguas, Puerto Rico.",
 };
-
-const principles = [
-  [Puzzle, "Tecnología útil", "La tecnología debe resolver problemas reales."],
-  [Lightbulb, "Innovación con propósito", "Adoptamos nuevas ideas cuando crean valor, no simplemente porque son nuevas."],
-  [Compass, "Desarrollo local", "Creemos en fortalecer capacidades, negocios y oportunidades desde Puerto Rico."],
-  [HeartHandshake, "Relaciones a largo plazo", "Buscamos construir soluciones y relaciones que puedan evolucionar junto a nuestros clientes."],
-] as const;
 
 export default function AboutPage() {
   return (
     <>
       <div className="internal-header-band"><SiteHeader /></div>
-      <main className="about-page">
-        <InternalPageHero
-          variant="about"
-          eyebrow="HEBARO LLC"
+      <main className="about-page about-page-compact">
+        <InternalPageHero variant="about" eyebrow="HEBARO LLC · CAGUAS, PUERTO RICO"
           title={<>Tecnología con propósito.<br /><em>Construida desde Puerto Rico.</em></>}
-          description="Somos HEBARO LLC. Desde Caguas, Puerto Rico, desarrollamos tecnología para simplificar el trabajo de negocios y organizaciones: automatización, software, integraciones y capacitación."
-          visual={<PuertoRicoNetwork />}
-        >
+          description="Ayudamos a negocios y organizaciones a simplificar su trabajo con automatización, software, integración de sistemas y capacitación. También conectamos oportunidades a través de nuestro Marketplace."
+          visual={<PuertoRicoNetwork />}>
           <ConsultationLink />
         </InternalPageHero>
 
-        <section className="about-intro-section">
-          <div className="wrap about-intro-grid">
-            <div className="about-statement"><p className="internal-eyebrow"><span />QUIÉNES SOMOS</p><h2>Construimos tecnología.<br /><em>Creamos conexiones.</em></h2></div>
-            <div className="about-intro-copy">
-              <p>HEBARO combina soluciones tecnológicas, capacitación y una plataforma digital diseñada para conectar oportunidades.</p>
-              <p>Trabajamos para que empresas y organizaciones puedan utilizar la tecnología de forma práctica, mientras construimos herramientas que fortalecen el ecosistema empresarial.</p>
+        <section className="about-compact-vision" aria-labelledby="about-vision-title">
+          <div className="wrap">
+            <div className="about-circuit" aria-hidden="true">
+              <svg viewBox="0 0 360 120" focusable="false">
+                <defs><linearGradient id="about-signal"><stop stopColor="#65c5cc"/><stop offset="1" stopColor="#d6bf9f"/></linearGradient></defs>
+                <g fill="none" stroke="url(#about-signal)" strokeWidth="1.5"><path d="M0 30H85L115 60H150M0 90H85L115 60M210 60H245L275 30H360M245 60L275 90H360M180 0V35M180 85V120"/></g>
+                <rect x="150" y="30" width="60" height="60" rx="14" fill="#031f24" stroke="#d6bf9f"/>
+                <path d="M166 45V75M194 45V75M166 60H194" fill="none" stroke="#d6bf9f" strokeWidth="4"/>
+                <g fill="#8edce0"><circle cx="85" cy="30" r="4"/><circle cx="85" cy="90" r="4"/><circle cx="275" cy="30" r="4"/><circle cx="275" cy="90" r="4"/></g>
+              </svg>
             </div>
+            <div><p className="internal-eyebrow"><span />NUESTRA VISIÓN</p><h2 id="about-vision-title">Que más negocios puedan aprovechar la tecnología que se construye en Puerto Rico.</h2></div>
+          </div>
+        </section>
+
+        <section className="about-compact-paths" aria-label="Cómo podemos ayudarte">
+          <div className="wrap">
+            <article><Workflow size={28} aria-hidden="true"/><div><h2>Simplifica tu operación.</h2><p>Automatización, software e integraciones para atender necesidades concretas de tu negocio.</p><Link href="/soluciones">Explorar soluciones <ArrowRight size={17} aria-hidden="true"/></Link></div></article>
+            <article><Store size={28} aria-hidden="true"/><div><h2>Conecta con oportunidades.</h2><p>Un espacio digital para productos, servicios, talento y negocios.</p><a href="https://marketplace.hebaro.com">Ir al Marketplace <ArrowRight size={17} aria-hidden="true"/></a></div></article>
           </div>
         </section>
 
         <section className="about-local-section" aria-labelledby="about-local-title">
           <div className="wrap about-local-grid">
             <div className="about-local-card">
-              <p className="internal-eyebrow"><span />DESDE CAGUAS, PUERTO RICO</p>
-              <h2 id="about-local-title">Tecnología con un equipo al que puedes contactar.</h2>
-              <p>Nuestras oficinas están en el Centro de Bellas Artes de Caguas. Cuéntanos qué tarea te quita tiempo o qué proceso necesita mejorar.</p>
+              <p className="internal-eyebrow"><span />CERCA DE TU NEGOCIO</p>
+              <h2 id="about-local-title">Hablemos desde Caguas.</h2>
+              <p>Estamos en el Centro de Bellas Artes de Caguas, Puerto Rico.</p>
               <a href="mailto:info@hebaro.com">info@hebaro.com <ArrowRight size={17} aria-hidden="true" /></a>
               <a href="tel:+19399388323">(939) 938-8323 <ArrowRight size={17} aria-hidden="true" /></a>
             </div>
             <div className="about-approach">
               <p className="internal-eyebrow"><span />NUESTRO ENFOQUE</p>
               <h2>Primero el proceso.<br />Después, la tecnología.</h2>
-              <p>No todo problema requiere una plataforma nueva. El punto de partida es entender cómo trabaja tu negocio.</p>
+              <p>Tecnología útil, innovación con propósito y relaciones que puedan crecer contigo.</p>
               <ol>
-                <li><span>01</span><div><h3>Entender lo que haces hoy</h3><p>Las tareas que se repiten, las herramientas que utilizas y dónde se complica el trabajo.</p></div></li>
-                <li><span>02</span><div><h3>Identificar qué conviene simplificar</h3><p>Explorar si la necesidad se atiende con automatización, software, integración o capacitación.</p></div></li>
-                <li><span>03</span><div><h3>Conversar sobre el siguiente paso</h3><p>Aclarar necesidades y alcance antes de decidir cómo avanzar.</p></div></li>
+                <li><span>01</span><div><h3>Entender tu operación</h3><p>Qué haces hoy y dónde se repite el trabajo.</p></div></li>
+                <li><span>02</span><div><h3>Identificar qué simplificar</h3><p>Elegir herramientas según la necesidad, no la tendencia.</p></div></li>
+                <li><span>03</span><div><h3>Definir el siguiente paso</h3><p>Conversar sobre necesidades y alcance antes de avanzar.</p></div></li>
               </ol>
               <ConsultationLink />
-            </div>
-          </div>
-        </section>
-
-        <section className="about-vision-section">
-          <div className="wrap about-vision-inner">
-            <ConnectionMotif />
-            <div><p className="internal-eyebrow"><span />NUESTRA VISIÓN</p><h2>Creemos en lo que Puerto Rico puede construir.</h2><p>Creemos que Puerto Rico puede desarrollar, adoptar y exportar tecnología capaz de transformar la manera en que trabajamos, emprendemos y hacemos negocios.</p><ul className="about-vision-ideas">{([[Lightbulb, "Más innovación"], [TrendingUp, "Más oportunidades"], [GraduationCap, "Más talento local"], [Network, "Más impacto regional"]] as const).map(([Icon, label]) => <li key={label}><Icon size={19} strokeWidth={1.5} aria-hidden="true" />{label}</li>)}</ul></div>
-          </div>
-        </section>
-
-        <section className="about-paths-section">
-          <div className="wrap">
-            <SectionHeading eyebrow="HEBARO LLC" title="Una empresa. Dos formas de ayudarte." />
-            <div className="about-path-grid">
-              <article className="about-path about-path-tech">
-                <p className="internal-eyebrow"><span />SOLUCIONES TECNOLÓGICAS</p>
-                <PathDiagram variant="solutions" /><h3>Transforma cómo trabajas.</h3>
-                <p>IA, automatización, software, integración de sistemas y capacitación para organizaciones que quieren transformar cómo trabajan.</p>
-                <ul className="about-capabilities">{([[Zap, "Automatización"], [Code2, "Software a la medida"], [Workflow, "Integración de sistemas"], [GraduationCap, "Capacitación"]] as const).map(([Icon, label]) => <li key={label}><Icon size={18} aria-hidden="true" />{label}</li>)}</ul>
-                <Link href="/soluciones">Explorar soluciones <ArrowRight size={17} /></Link>
-              </article>
-              <article className="about-path about-path-market">
-                <p className="internal-eyebrow"><span />HEBARO MARKETPLACE</p>
-                <PathDiagram variant="marketplace" /><h3>Conecta con oportunidades.</h3>
-                <p>Un espacio digital para conectar productos, servicios, talento y negocios.</p>
-                <ul className="about-capabilities">{([[Eye, "Visibilidad para tu negocio"], [Users, "Conexiones con clientes y aliados"], [Handshake, "Oportunidades de colaboración"], [TrendingUp, "Crecimiento de Puerto Rico"]] as const).map(([Icon, label]) => <li key={label}><Icon size={18} aria-hidden="true" />{label}</li>)}</ul>
-                <a href="https://marketplace.hebaro.com">Entrar al Marketplace <ArrowRight size={17} /></a>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section className="internal-section principles-section">
-          <div className="wrap">
-            <SectionHeading eyebrow="NUESTROS PRINCIPIOS" title="Lo que guía nuestro trabajo." />
-            <div className="principles-grid">
-              {principles.map(([Icon, title, description], index) => (
-                <article className="principle-card" key={title}><span className="principle-number">0{index + 1}</span><Icon size={22} strokeWidth={1.8} aria-hidden="true"/><h3>{title}</h3><p>{description}</p></article>
-              ))}
             </div>
           </div>
         </section>
