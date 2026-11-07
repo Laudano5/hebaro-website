@@ -1,4 +1,4 @@
-﻿.page { --night:#031b20; --paper:#f1eee6; --ink:#082c37; --sand:#dfb17d; background:var(--paper); color:var(--ink); }
+.page { --night:#031b20; --paper:#f1eee6; --ink:#082c37; --sand:#dfb17d; background:var(--paper); color:var(--ink); }
 .wrap { width:min(1360px,87.2%); margin-inline:auto; }
 .page h1,.page h2,.page h3 { font-family:Manrope,sans-serif; }
 .page h2 { margin:0; font-size:clamp(29px,2.9vw,43px); line-height:1.16; font-weight:750; letter-spacing:-1.2px; }
@@ -113,4 +113,25 @@
  .ctaPhoto { object-position:right center; }
  .cta::before { background:linear-gradient(90deg,#031b20f2,#031b2080),linear-gradient(180deg,#031b2099,transparent); }
  .ctaSignature { display:none; }
+}
+
+/* Concrete service examples, scoped to the solutions page. */
+.heroActions { display:flex; flex-wrap:wrap; align-items:center; gap:16px 24px; }
+.examplesLink { display:inline-flex; align-items:center; gap:12px; font-size:14px; padding-block:12px; }
+.examplesLink:hover { color:var(--sand); }
+.portfolio { scroll-margin-top:105px; padding-bottom:52px; }
+.portfolioColumns { gap:24px; }
+.portfolioColumns article { display:flex; flex-direction:column; background:#faf8f3; border:1px solid #082c3726; border-radius:4px; overflow:hidden; }
+.portfolioCopy { flex:1; display:flex; flex-direction:column; border:0; margin:0; padding:24px; }
+.portfolioCopy .exampleCategory { margin:0 0 12px; color:#775030; font-size:11px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; }
+.portfolioCopy h3 { font-size:22px; line-height:1.35; }
+.portfolioCopy p { line-height:1.7; margin-top:15px; }
+.portfolioCopy .exampleFlow { padding:14px 0; border-top:1px solid #082c3726; color:#29454f; }
+.portfolioCopy a { position:static; display:flex; justify-content:space-between; gap:12px; width:auto; height:auto; min-height:44px; margin-top:auto; padding-top:12px; color:#29454f; font-size:14px; font-weight:650; }
+.portfolioCopy a svg { flex-shrink:0; }
+@media(max-width:700px) {
+ .heroActions { align-items:stretch; flex-direction:column; gap:8px; }
+ .heroActions :global(.button), .examplesLink { justify-content:space-between; }
+ .portfolioCopy { padding:22px; }
+ .portfolioColumns { gap:24px; }
 }
