@@ -1,4 +1,5 @@
-﻿import { ArrowRight, BrainCircuit, CodeXml, GraduationCap, Share2 } from "lucide-react";
+import type { Metadata } from "next";
+import { ArrowRight, BrainCircuit, CodeXml, GraduationCap, Share2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "./site-header";
@@ -6,6 +7,11 @@ import SiteFooter from "./site-footer";
 import HeraWidget from "./hera-widget";
 import { ConsultationLink } from "./internal-page-components";
 import styles from "./home.module.css";
+
+export const metadata: Metadata = {
+  title: "HEBARO | Automatización y tecnología para negocios en Puerto Rico",
+  description: "Simplifica procesos, conecta tus herramientas y ahorra tiempo con HEBARO. Soluciones tecnológicas desde Caguas, Puerto Rico. Solicita una consulta gratuita.",
+};
 
 const marketplaceUrl = "https://marketplace.hebaro.com/";
 const capabilities = [
@@ -26,14 +32,26 @@ export default function Home() {
           </div>
           <div className={`${styles.wrap} ${styles.heroInner}`}>
             <div className={styles.heroCopy}>
-              <p className={styles.eyebrow}>TECNOLOGÍA PARA CRECER</p>
-              <h1 id="home-title">Un ecosistema<br />para conectar<br /><em>tu negocio.</em></h1>
-              <p className={styles.heroDescription}>Automatizamos, integramos y desarrollamos soluciones que conectan personas, procesos y oportunidades.</p>
+              <p className={styles.eyebrow}>TECNOLOGÍA PARA NEGOCIOS EN PUERTO RICO</p>
+              <h1 id="home-title">Menos tareas.<br />Más tiempo para<br /><em>tu negocio.</em></h1>
+              <p className={styles.heroDescription}>Automatizamos procesos repetitivos, conectamos tus herramientas y desarrollamos software a la medida de tu operación.</p>
               <div className={styles.heroActions}>
-                <Link className="button" href="/soluciones">Conoce nuestras soluciones <ArrowRight size={17} aria-hidden="true" /></Link>
-                <a className={`button ${styles.outline}`} href={marketplaceUrl}>Explora el Marketplace <ArrowRight size={17} aria-hidden="true" /></a>
+                <ConsultationLink>Solicita una consulta gratuita</ConsultationLink>
+                <Link className={styles.secondaryAction} href="/soluciones">Conoce nuestras soluciones <ArrowRight size={17} aria-hidden="true" /></Link>
               </div>
-              <p className={styles.signature}>IDEAS · TECNOLOGÍA · IMPACTO REAL</p>
+              <p className={styles.signature}>DESDE EL CENTRO DE BELLAS ARTES DE CAGUAS</p>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.opportunities} aria-labelledby="opportunities-title">
+          <div className={styles.wrap}>
+            <p className={styles.eyebrow}>EMPIEZA POR LO QUE TE QUITA TIEMPO</p>
+            <h2 id="opportunities-title">¿Qué proceso necesita trabajar mejor?</h2>
+            <div className={styles.opportunityGrid}>
+              <article><span>01</span><h3>Tareas repetitivas</h3><p>Identifica pasos manuales, como registrar solicitudes o preparar reportes, que podrías automatizar.</p></article>
+              <article><span>02</span><h3>Información dispersa</h3><p>Conecta las herramientas de tu equipo para reducir la entrada duplicada de datos.</p></article>
+              <article><span>03</span><h3>Una operación que crece</h3><p>Explora software a la medida para organizar procesos entre personas, equipos o localidades.</p></article>
             </div>
           </div>
         </section>
@@ -108,9 +126,9 @@ export default function Home() {
           <Image className={styles.ctaPhoto} src="/public/images/Hebaro imagen fondo.png" alt="" fill quality={90} sizes="100vw" />
           <div className={`${styles.wrap} ${styles.ctaInner}`}><div className={styles.ctaCopy}>
             <p className={styles.eyebrow}>CONSTRUYAMOS JUNTOS</p>
-            <h2 id="cta-title">¿Qué podemos<br />construir juntos?</h2>
-            <p>Hablemos de tu proyecto y llevemos<br />tu negocio al próximo nivel.</p>
-            <ConsultationLink>Solicita una consulta</ConsultationLink>
+            <h2 id="cta-title">Hablemos de lo que<br />te quita tiempo.</h2>
+            <p>Cuéntanos qué proceso quieres mejorar. Nuestro equipo revisará tu necesidad y se comunicará contigo.</p>
+            <ConsultationLink>Solicita una consulta gratuita</ConsultationLink>
           </div></div>
         </section>
       </main>
