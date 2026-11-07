@@ -918,5 +918,7 @@ section[id] {
 /* Give the header logo a little more space from navigation without moving it. */
 .site-header > .brand { position: relative; left: -12px; }
 @media (max-width: 700px) {
-  .site-header > .brand { left: -6px; }
+  /* Override the legacy full-width header padding on small screens only. */
+  .site-header.wrap { padding-left: 12px !important; }
+  .site-header > .brand { left: 0; }
 }
