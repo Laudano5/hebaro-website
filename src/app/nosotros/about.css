@@ -121,3 +121,23 @@
   .about-certification-logo { width: 100px; }
   .identity-desktop-break { display: none; }
 }
+
+/* Reviewable local presence and practical approach; scoped to Nosotros. */
+.about-local-section { padding: 88px 0; background: #031f24; }
+.about-local-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 70px; align-items: start; }
+.about-local-card { padding: 36px; border: 1px solid #65c5cc44; border-radius: 12px; background: linear-gradient(145deg, #29454f, #0b2d34); }
+.about-local-section h2 { margin: 0; font: 750 clamp(28px, 3vw, 40px)/1.2 Manrope, sans-serif; letter-spacing: -1px; color: #f5f3ee; }
+.about-local-section p:not(.internal-eyebrow) { color: #c0cecc; font-size: 15px; line-height: 1.8; }
+.about-local-card > a { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 0; border-top: 1px solid #65c5cc44; color: #d6bf9f; font-weight: 700; overflow-wrap: anywhere; }
+.about-local-card > a:focus-visible { outline: 2px solid #65c5cc; outline-offset: 5px; }
+.about-approach ol { list-style: none; padding: 0; margin: 28px 0; }
+.about-approach li { display: flex; gap: 20px; padding: 20px 0; border-top: 1px solid #65c5cc33; }
+.about-approach li > span { color: #d6bf9f; font-size: 20px; font-weight: 700; }
+.about-approach h3 { margin: 0; font-size: 18px; color: #f5f3ee; }
+.about-approach li p { margin: 8px 0 0; }
+@media (max-width: 800px) {
+ .about-local-section { padding: 60px 0; }
+ .about-local-grid { grid-template-columns: 1fr; gap: 42px; }
+ .about-local-card { padding: 28px 24px; }
+ .about-page .internal-hero-actions .button, .about-approach > .button { white-space: normal; text-align: center; }
+}
