@@ -141,3 +141,36 @@
  .about-local-card { padding: 28px 24px; }
  .about-page .internal-hero-actions .button, .about-approach > .button { white-space: normal; text-align: center; }
 }
+
+/* Compact composition: fewer repeated sections and a code-native circuit motif. */
+.about-page-compact .internal-hero { min-height: 0; padding-block: 40px; }
+.about-page-compact .internal-hero-layout.has-visual { min-height: 440px; }
+.about-compact-vision { background: #29454f; padding: 32px 0; }
+.about-compact-vision > .wrap { display: grid; grid-template-columns: minmax(180px,.55fr) minmax(0,1.45fr); align-items: center; gap: 42px; }
+.about-circuit svg { display: block; width: 100%; height: auto; }
+.about-compact-vision h2 { margin: 0; font: 650 clamp(21px,2.5vw,30px)/1.4 Manrope,sans-serif; color: #f5f3ee; }
+.about-compact-paths { padding: 48px 0; background: #f3efe7; color: #031f24; }
+.about-compact-paths > .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 38px; }
+.about-compact-paths article { display: flex; gap: 22px; }
+.about-compact-paths article > svg { color: #927044; flex-shrink: 0; }
+.about-compact-paths h2 { margin: 0; font-size: 24px; line-height: 1.25; color: #031f24; }
+.about-compact-paths p { font-size: 14px; line-height: 1.75; color: #29454f; margin: 12px 0; }
+.about-compact-paths a { display: inline-flex; gap: 12px; align-items: center; color: #29454f; font-size: 14px; font-weight: 750; }
+.about-compact-paths a:focus-visible { outline: 2px solid #29454f; outline-offset: 5px; }
+.about-page-compact .about-local-section { padding: 56px 0; }
+.about-page-compact .about-approach li { padding: 14px 0; }
+.about-page-compact .about-approach ol { margin: 20px 0; }
+.about-page-compact .internal-final-cta { padding-block: 48px; }
+@media(max-width:800px) {
+ .about-page-compact .internal-hero { padding-block: 36px; }
+ .about-page-compact .internal-hero-layout.has-visual { min-height: 0; }
+ .about-page-compact .pr-network { max-width: 330px; margin: 0 auto; }
+ .about-page-compact .internal-hero-visual { margin-top: 12px; }
+ .about-compact-vision > .wrap { grid-template-columns: 1fr; gap: 16px; }
+ .about-circuit { max-width: 210px; }
+ .about-compact-vision .internal-eyebrow { margin-bottom: 12px; }
+ .about-compact-paths { padding-block: 36px; }
+ .about-compact-paths > .wrap { grid-template-columns: 1fr; gap: 28px; }
+ .about-compact-paths article + article { border-top: 1px solid #29454f33; padding-top: 28px; }
+ .about-page-compact .about-local-section { padding-block: 40px; }
+}
