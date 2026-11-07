@@ -5,7 +5,7 @@ import Link from "next/link";
 import { SiteHeader } from "../site-header";
 import SiteFooter from "../site-footer";
 import HeraWidget from "../hera-widget";
-import { InternalPageHero, SectionHeading } from "../internal-page-components";
+import { InternalPageHero, SectionHeading, ConsultationLink } from "../internal-page-components";
 
 import { PuertoRicoNetwork, ConnectionMotif, PathDiagram } from "./about-visuals";
 import "./about.css";
@@ -31,9 +31,11 @@ export default function AboutPage() {
           variant="about"
           eyebrow="HEBARO LLC"
           title={<>Tecnología con propósito.<br /><em>Construida desde Puerto Rico.</em></>}
-          description="HEBARO es una empresa puertorriqueña de tecnología creada para ayudar a personas, negocios y organizaciones a crecer mediante tecnología, conocimiento y nuevas oportunidades."
+          description="Somos HEBARO LLC. Desde Caguas, Puerto Rico, desarrollamos tecnología para simplificar el trabajo de negocios y organizaciones: automatización, software, integraciones y capacitación."
           visual={<PuertoRicoNetwork />}
-        />
+        >
+          <ConsultationLink />
+        </InternalPageHero>
 
         <section className="about-intro-section">
           <div className="wrap about-intro-grid">
@@ -41,6 +43,29 @@ export default function AboutPage() {
             <div className="about-intro-copy">
               <p>HEBARO combina soluciones tecnológicas, capacitación y una plataforma digital diseñada para conectar oportunidades.</p>
               <p>Trabajamos para que empresas y organizaciones puedan utilizar la tecnología de forma práctica, mientras construimos herramientas que fortalecen el ecosistema empresarial.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="about-local-section" aria-labelledby="about-local-title">
+          <div className="wrap about-local-grid">
+            <div className="about-local-card">
+              <p className="internal-eyebrow"><span />DESDE CAGUAS, PUERTO RICO</p>
+              <h2 id="about-local-title">Tecnología con un equipo al que puedes contactar.</h2>
+              <p>Nuestras oficinas están en el Centro de Bellas Artes de Caguas. Cuéntanos qué tarea te quita tiempo o qué proceso necesita mejorar.</p>
+              <a href="mailto:info@hebaro.com">info@hebaro.com <ArrowRight size={17} aria-hidden="true" /></a>
+              <a href="tel:+19399388323">(939) 938-8323 <ArrowRight size={17} aria-hidden="true" /></a>
+            </div>
+            <div className="about-approach">
+              <p className="internal-eyebrow"><span />NUESTRO ENFOQUE</p>
+              <h2>Primero el proceso.<br />Después, la tecnología.</h2>
+              <p>No todo problema requiere una plataforma nueva. El punto de partida es entender cómo trabaja tu negocio.</p>
+              <ol>
+                <li><span>01</span><div><h3>Entender lo que haces hoy</h3><p>Las tareas que se repiten, las herramientas que utilizas y dónde se complica el trabajo.</p></div></li>
+                <li><span>02</span><div><h3>Identificar qué conviene simplificar</h3><p>Explorar si la necesidad se atiende con automatización, software, integración o capacitación.</p></div></li>
+                <li><span>03</span><div><h3>Conversar sobre el siguiente paso</h3><p>Aclarar necesidades y alcance antes de decidir cómo avanzar.</p></div></li>
+              </ol>
+              <ConsultationLink />
             </div>
           </div>
         </section>
