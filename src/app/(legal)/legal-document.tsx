@@ -19,7 +19,7 @@ export default function LegalDocument({ title, sections }: { title: string; sect
       <header className="legal-document-header">
         <p className="legal-brand">HEBARO LLC</p>
         <h1 id="legal-title">{title}</h1>
-        <p className="legal-updated">Última actualización: <time dateTime="2026-10-06">6 de octubre de 2026</time></p>
+        <p className="legal-updated">Última actualización y entrada en vigor: <time dateTime="2026-11-09">9 de noviembre de 2026</time></p>
       </header>
       {sections.map((section, index) => <section key={section.heading} aria-labelledby={`legal-section-${index}`}>
         <h2 id={`legal-section-${index}`}>{section.heading}</h2>

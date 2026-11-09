@@ -90,6 +90,10 @@
         {
           "type": "paragraph",
           "text": "Cuando un proyecto requiera intercambio de información confidencial, las partes podrán establecer las protecciones correspondientes mediante un acuerdo escrito."
+        },
+        {
+          "type": "paragraph",
+          "text": "La ausencia de un acuerdo de confidencialidad separado no limita las obligaciones que correspondan a HEBARO bajo la legislación aplicable ni lo establecido en su Política de Privacidad."
         }
       ]
     },
@@ -151,7 +155,7 @@
       "blocks": [
         {
           "type": "paragraph",
-          "text": "HEBARO puede desarrollar, operar o promover productos, plataformas y marcas adicionales, incluyendo HEBARO Marketplace y ArtesenPR."
+          "text": "HEBARO puede desarrollar, operar o promover productos, plataformas y marcas adicionales, incluyendo HEBARO Marketplace, ArtesenPR y PERMIT by HEBARO."
         },
         {
           "type": "paragraph",
@@ -200,6 +204,10 @@
         {
           "type": "paragraph",
           "text": "Las obligaciones específicas relacionadas con soluciones de IA desarrolladas para clientes se establecerán, cuando corresponda, en el contrato o SOW aplicable."
+        },
+        {
+          "type": "paragraph",
+          "text": "HERA es un asistente automatizado que ofrece información general sobre HEBARO y ayuda a describir necesidades de proyectos. Sus respuestas pueden contener errores y no constituyen una cotización definitiva, aceptación de un proyecto ni compromiso contractual de HEBARO. El alcance, precio, entregables y demás condiciones de un servicio se establecen en el acuerdo aplicable. El tratamiento de los mensajes y datos de contacto se describe en la Política de Privacidad."
         }
       ]
     },
@@ -504,6 +512,10 @@
             "datos de seguridad y diagnóstico; y",
             "información necesaria para prevenir abuso o mantener la disponibilidad del Sitio."
           ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Si utiliza HERA, también se procesan los mensajes que envía, el contexto de la conversación y los detalles del proyecto que comparta. Cuando solicita que HEBARO se comunique con usted, se procesan además los datos de contacto, el resumen de su solicitud y la fecha de su autorización para el seguimiento."
         }
       ]
     },
@@ -531,6 +543,10 @@
             "cumplir obligaciones legales; y",
             "proteger los derechos y seguridad de HEBARO, nuestros usuarios y terceros."
           ]
+        },
+        {
+          "type": "paragraph",
+          "text": "La información proporcionada a HERA se utiliza para generar respuestas automatizadas sobre los servicios de HEBARO y, cuando solicita contacto, preparar un resumen que facilite la evaluación y el seguimiento de su consulta."
         }
       ]
     },
@@ -600,6 +616,10 @@
         {
           "type": "paragraph",
           "text": "Estos proveedores podrán procesar información en la medida necesaria para prestar sus servicios y conforme a las condiciones y obligaciones que les sean aplicables."
+        },
+        {
+          "type": "paragraph",
+          "text": "HEBARO utiliza OpenAI para el procesamiento de conversaciones y resúmenes de HERA, Supabase para almacenar y gestionar solicitudes de contacto, y Resend para enviar al equipo las notificaciones correspondientes. Estos servicios reciben la información necesaria para realizar esas funciones. El alojamiento del sitio y el correo del equipo también intervienen en el tratamiento de las solicitudes."
         }
       ]
     },
@@ -629,8 +649,47 @@
             "para operar el Sitio mediante proveedores autorizados;",
             "a solicitud o con consentimiento del usuario;",
             "para cumplir una ley, orden judicial o requerimiento legal válido;",
-            "para investigar fraude"
+            "para investigar fraude."
           ]
+        }
+      ]
+    },
+    {
+      "heading": "9. Asistente HERA",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "HERA es un asistente automatizado que utiliza servicios de inteligencia artificial de OpenAI. Los mensajes y el contexto necesario de la conversación se transmiten a ese proveedor para generar respuestas, incluso antes de que usted solicite contacto con el equipo."
+        },
+        {
+          "type": "paragraph",
+          "text": "Si completa la solicitud de contacto y confirma la autorización correspondiente, HEBARO utiliza sus datos de contacto y un resumen de lo que compartió para dar seguimiento. Si no puede generarse el resumen automático, la solicitud puede incluir extractos de sus mensajes."
+        },
+        {
+          "type": "paragraph",
+          "text": "No incluya contraseñas, números completos de tarjetas, documentos de identidad, información médica ni secretos comerciales en el chat. Puede utilizar el formulario de consulta o los medios de contacto publicados si prefiere no conversar con HERA."
+        },
+        {
+          "type": "paragraph",
+          "text": "El procesamiento del chat y el seguimiento comercial son funciones distintas. Solicitar contacto no equivale por sí solo a consentir campañas promocionales no relacionadas."
+        }
+      ]
+    },
+    {
+      "heading": "10. Cambios de la política y fecha de vigencia",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "HEBARO publicará las modificaciones de esta Política en esta misma página e indicará su fecha de entrada en vigor."
+        }
+      ]
+    },
+    {
+      "heading": "11. Contacto de privacidad",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "HEBARO LLC. Puerto Rico. Correo electrónico: info@hebaro.com. Teléfono: (939) 938-8323. No envíe contraseñas, números completos de tarjetas ni documentos sensibles por estos medios generales."
         }
       ]
     }

@@ -258,7 +258,7 @@ export default function HeraWidget() {
                     <p>También puedes empezar por aquí:</p>
                     {QUICK_ACTIONS.map(({ label, service }, index) => {
                       const Icon = QUICK_ACTION_ICONS[index];
-                      return <button type="button" key={label} disabled={isThinking} onClick={() => addVisitorMessage(label, service)}>
+                      return <button type="button" key={label} disabled={isThinking} aria-describedby="hera-privacy-notice" onClick={() => addVisitorMessage(label, service)}>
                         <span className="hera-action-label"><Icon size={16} strokeWidth={1.8} />{label}</span><ArrowRight size={14} />
                       </button>
                     })}
@@ -282,10 +282,12 @@ export default function HeraWidget() {
               </div>
 
               <form className="hera-composer" onSubmit={sendMessage}>
+                {quickActionsAvailable && <p className="hera-privacy-notice" id="hera-privacy-notice">HERA usa inteligencia artificial de OpenAI para responder. Sus mensajes se procesan para atender esta conversación. No comparta información sensible. Si solicita contacto, sus datos y un resumen de lo compartido se enviarán al equipo de HEBARO. Consulte la <a href="/privacidad">Política de Privacidad</a>.</p>}
                 <label className="sr-only" htmlFor="hera-message">Escribe un mensaje para HERA</label>
                 <textarea
                   ref={composerRef}
                   id="hera-message"
+                  aria-describedby={quickActionsAvailable ? "hera-privacy-notice" : undefined}
                   value={draft}
                   onChange={(event) => setDraft(event.target.value.slice(0, MAX_MESSAGE_CHARS))}
                   onKeyDown={sendOnEnter}
