@@ -333,7 +333,7 @@ export default function HeraWidget() {
                 <p className="hera-disclosure">Antes de enviar: tu información de contacto y los mensajes que compartiste se enviarán al equipo de HEBARO para dar seguimiento a esta solicitud.</p>
                 <label className="hera-consent">
                   <input type="checkbox" checked={lead.consent} onChange={(event) => setLead((current) => ({ ...current, consent: event.target.checked }))} />
-                  <span>Al enviar tu información, autorizas a HEBARO a utilizar estos datos para comunicarse contigo sobre tu solicitud. <a href="/politica-de-privacidad">Política de privacidad</a>.</span>
+                  <span>Al enviar tu información, autorizas a HEBARO a utilizar estos datos para comunicarse contigo sobre tu solicitud. <a href="/privacidad">Política de privacidad</a>.</span>
                 </label>
                 {contactValidation && !lead.consent && <p className="hera-field-error">Confirma el consentimiento para continuar.</p>}
                 {submitError && <div className="hera-submit-error" role="alert" tabIndex={-1} ref={submitErrorRef}>
