@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { Menu, Search, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const logo = "/public/images/Blanco sin BG-02.png";
 
@@ -51,7 +51,6 @@ export function SiteHeader() {
         {links.map(([label, href]) => <a href={href} key={href} aria-current={pathname === href ? "page" : undefined}>{label}</a>)}
       </nav>
       <div className="header-actions">
-        <button className="search-button" aria-label="Buscar" type="button"><Search size={20} /></button>
         <a className="login-button" href="/consulta">Contáctanos</a>
         <button
           className="menu-button"
